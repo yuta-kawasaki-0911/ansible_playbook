@@ -1,0 +1,49 @@
+---
+- name: Register datadog.yaml stat
+  stat:
+    path: /etc/datadog-agent/datadog.yaml
+  register: datadog_yaml
+
+- name: Check if process_config is in datadog.yaml
+  when: datadog_yaml.stat.exists == True
+  become: yes
+  shell: "grep -A3 'process_config' /etc/datadog-agent/datadog.yaml | grep enabled |  cut -d ':' -f 2"
+  register: process_config
+  ignore_errors: true
+
+- name: Get the line number of enabled if it set to not true
+  when: datadog_yaml.stat.exists == True and '"true" not in process_config.stdout' 
+  become: yes
+  shell: "grep -A3 -n 'process_config' /etc/datadog-agent/datadog.yaml | grep enabled | cut -f1 -d-"
+  register: enabled_linenumber
+  ignore_errors: true
+  
+- name: Append process_config in datadog.yaml if not found
+  when: datadog_yaml.stat.exists == True and process_config.stdout == ''
+  become: yes
+  blockinfile:
+    path: /etc/datadog-agent/datadog.yaml
+    block: |
+      process_config:
+        enabled: "true"
+    marker: "# {mark} process_config"
+
+- name: Update enabled to true if process_config - enable is not true in datadog.yaml
+  when: datadog_yaml.stat.exists == True and '"true" not in process_config.stdout'
+  become: yes
+  command: "sed -i '{{ enabled_linenumber.stdout }}s/false/true/g; {{ enabled_linenumber.stdout }}s/disabled/true/g' /etc/datadog-agent/datadog.yaml"
+
+- name: Version up dd-agent
+#  become: true
+#  shell: "yum install datadog-agent"
+  become: true
+  package:
+    name: datadog-agent
+    state: latest
+
+- name: restart datadog-agent
+  become: true
+  service:
+    name: datadog-agent
+    state: restarted
+    enabled: yes

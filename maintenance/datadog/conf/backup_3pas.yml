@@ -1,0 +1,18 @@
+---
+- hosts: backup_3pas
+  become: true
+  tasks:
+  - name: copy common
+    copy:
+      src: common/datadog-agent/
+      dest: /etc/datadog-agent/
+      owner: dd-agent
+      group: dd-agent
+      mode: 0644
+  - name: copy
+    copy:
+      src: backup_3pas/datadog-agent/
+      dest: /etc/datadog-agent/
+      owner: dd-agent
+      group: dd-agent
+      mode: 0644

@@ -1,0 +1,6 @@
+update_optout_cer: optout-dsp.ad-m.asia.cer.to20210331
+update_optout_key: optout-dsp.ad-m.asia.key.to20210331
+domain_ca_crt: JPRS_DVCA_G3_PEM.cer.to20210331
+optout_cer_path: /usr/local/apache2/conf/optout-dsp.ad-m.asia/cn_optout-dsp.ad-m.asia.cer
+optout_key_path: /usr/local/apache2/conf/optout-dsp.ad-m.asia/optout-dsp.ad-m.asia.key
+domain_ca_optout_path: /usr/local/apache2/conf/optout-dsp.ad-m.asia/JPRS_DVCA.cer

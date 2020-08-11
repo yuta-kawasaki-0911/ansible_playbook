@@ -1,0 +1,4 @@
+---
+- name: reload nginx service
+  shell:
+    /usr/local/nginx/sbin/nginx -s reload

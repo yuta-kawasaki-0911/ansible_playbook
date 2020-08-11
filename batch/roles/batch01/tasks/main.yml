@@ -1,0 +1,130 @@
+---
+- name: static routeの設定
+  win_route:
+    destination: 172.18.0.0
+    gateway: 172.17.1.20
+    metric: 0
+    state: present
+
+- name: sysctlを配置(batch01,03)
+  copy:
+    src: sysctl_for_01_03.yml
+    dest: /etc/sysctl.conf
+    mode: '0644'
+  when: (inventory_hostname == 'batch01') or (inventory_hostname == 'batch03')
+
+## for analysis
+- name: create directories
+  file:
+    path: '{{ item }}'
+    state: directory
+  with_items:
+    - /var/app/analysis/jar
+    - /var/app/analysis/pid
+    - /var/app/analysis/summary/hourly
+
+- name: set directories authority
+  file:
+    path: '{{ item }}'
+    mode: '0777'
+  with_items:
+    - /var/app/analysis
+    - /var/app/analysis/pid
+    - /var/app/analysis/summary/hourly
+
+- name: install packages
+  yum:
+    name: '{{ item }}'
+    disablerepo: fullspeed
+  with_items:
+    - gcc
+    - autoconf
+    - apache-tomcat
+
+- name: set directories ownership
+  file:
+    path: /var/app/analysis
+    owner: tomcat
+    group: tomcat
+    state: directory
+    recurse: yes
+
+#tkvs<=>mysqlの同期バッチデプロイ用設定
+- name: create directories2
+  file:
+    path: /var/app/batch
+    owner: tomcat
+    group: tomcat
+
+#shの登録
+- name: copy shell scripts
+  copy:
+    src: cron/{{ item }}
+    dest: /var/app/maintenance/bin/
+  with_items:
+    - backup.sh
+    - clear_summary.sh
+    - lib-daily.sh
+    - make_bid_dir_in_HDFS.sh
+    - make_data_dir_in_HDFS.sh
+    - send_data_cro_to_HDFS.rb
+    - send_data_to_HDFS.rb
+
+- name: change owner and group of files
+  file:
+    path: '{{ item }}'
+    owner: root
+    group: root
+  with_items:
+    - backup.sh
+    - lib-daily.sh
+    - make_bid_dir_in_HDFS.sh
+
+- name: change authority
+  file:
+    path: '{{ item }}'
+    mode: '0777'
+  with_items:
+    - clear_summary.sh
+    - make_data_dir_in_HDFS.sh
+    - send_data_cro_to_HDFS.rb
+    - send_data_to_HDFS.rb
+
+- name: set cron make_data_dir_in_HDFS.sh
+  cron:
+    name: '{{ item.name }}'
+    minute: '30'
+    hour: '17'
+    job: '{{ item.job }}'
+  with_items:
+    - { name: make_data_dir_in_HDFS.sh, job: "/var/app/maintenance/bin/make_data_dir_in_HDFS.sh >/dev/null 2>&1" }
+    - { name: make_bid_dir_in_HDFS.sh, job: "/var/app/maintenance/bin/make_bid_dir_in_HDFS.sh >/dev/null 2>&1" }
+    - { name: clear_summary.sh, job: "/var/app/maintenance/bin/clear_summary.sh >/dev/null 2>&1" }
+
+- name: edit sudoers
+  lineinfile:
+    path: /etc/sudoers
+    regexp: '^Defaults    requiretty'
+    line: '#Defaults    requiretty'
+
+- name: create devops_cebu
+  user:
+    name: devops_cebu
+
+- name: set sudoers
+  copy:
+    src: sysops
+    dest: /etc/sudoers.d/
+
+#sshのノンパス設定
+- name: check the existence of the id_rsa
+  stat: path=/home/tomcat/.ssh/id_rsa
+  register: id_rsa
+
+- name: if not, create id_rsa
+  become_user: tomcat
+  command: ssh-keygen -q -f /home/tomcat/.ssh/id_rsa -N ""
+  when: id_rsa.stat.exists == False
+
+- name: view ssh-key (copy here and paste to root@cal03:/root/.ssh/authorized_keys)
+  command: cat /home/tomcat/.ssh/id_rsa.pub

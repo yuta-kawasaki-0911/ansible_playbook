@@ -1,0 +1,8 @@
+---
+- hosts: add_dkvsm
+  become: yes
+  vars_files:
+    - vars/dkvsm_cron.yml
+  roles:
+    - ../common_build/roles/common
+    - cron

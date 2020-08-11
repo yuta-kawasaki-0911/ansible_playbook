@@ -1,0 +1,4 @@
+---
+- hosts: all:!ansible
+  roles:
+      - { role: conntrack }

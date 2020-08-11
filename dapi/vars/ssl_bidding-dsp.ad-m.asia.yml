@@ -1,0 +1,6 @@
+update_bidding_crt: bidding-dsp.ad-m.asia.cer.to20210331
+update_bidding_key: bidding-dsp.ad-m.asia.key.to20210331
+domain_ca_crt: JPRS_DVCA_G3_PEM.cer.to20210331
+bidding_crt_path: /usr/local/apache2/conf/bidding-dsp.ad-m.asia/cn_bidding-dsp.ad-m.asia.cer
+bidding_key_path: /usr/local/apache2/conf/bidding-dsp.ad-m.asia/bidding-dsp.ad-m.asia.key
+domain_ca_bidding_path: /usr/local/apache2/conf/bidding-dsp.ad-m.asia/JPRS_DVCA.cer

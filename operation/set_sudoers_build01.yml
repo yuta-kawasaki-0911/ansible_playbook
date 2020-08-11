@@ -1,0 +1,5 @@
+---
+- hosts: build:!build02:!nbuild01
+  become: yes
+  roles:
+    - sudoers

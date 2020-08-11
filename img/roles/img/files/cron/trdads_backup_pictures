@@ -1,0 +1,14 @@
+#!/bin/bash
+
+#前提：
+#/root/temp作成
+#上記DIRに必要なスクリプトを置く
+#本スクリプトを/etc/cron.dailyに置く
+
+cd /root/temp
+bash backupPictureToRemoteServer.sh >/dev/null 2>&1
+EXITVALUE=$?
+if [ $EXITVALUE != 0 ]; then
+    /usr/bin/logger -t backupPictureToRemoteServer.sh "ALERT exited abnormally with [$EXITVALUE]"
+fi
+exit 0

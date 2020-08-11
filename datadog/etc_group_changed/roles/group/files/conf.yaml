@@ -1,0 +1,8 @@
+init_config:
+
+instances:
+
+- directory: "/etc"
+  name: "/etc/group"
+  filegauges: True
+  pattern: "group"

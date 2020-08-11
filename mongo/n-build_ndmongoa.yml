@@ -1,0 +1,8 @@
+---
+- hosts: add
+  become: yes
+  vars:
+    host: ndmongoa
+  roles:
+    - ../common_build/roles/common
+    - mongodb3.6

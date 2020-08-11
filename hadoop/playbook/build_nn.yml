@@ -1,0 +1,7 @@
+---
+- hosts: nn_active, nn_standby
+  become: yes
+  roles:
+#    - ../../common_build/roles/common
+#    - ../../common_build/roles/common2
+    - ../roles/build_nn

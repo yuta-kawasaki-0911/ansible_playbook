@@ -1,0 +1,4 @@
+update_crt: cn_admin-dsp.ad-m.asia.cer.to20200222
+update_key: admin-dsp.ad-m.asia.key.to20200222
+crt_path: /etc/nginx/conf.d/cn_admin-dsp.ad-m.asia.cer
+key_path: /etc/nginx/conf.d/admin-dsp.ad-m.asia.key

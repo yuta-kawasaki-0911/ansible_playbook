@@ -1,0 +1,5 @@
+%sysops    ALL=(tomcat)    NOPASSWD:    /var/app/fs/dmp/bin/knowledgecs_log_send.sh
+%sysops    ALL=(tomcat)    NOPASSWD:    /var/app/fs/dmp/bin/knowledgecs_log_extract.sh
+%sysops    ALL=(tomcat)    NOPASSWD:    /var/app/fs/dmp/bin/knowledgecs_log_delete_extracted.sh
+%sysops    ALL=(tomcat)    NOPASSWD:    /var/app/fs/dmp/bin/weather_forecast_change_date.sh
+%sysops    ALL=(tomcat)    NOPASSWD:    /var/app/fs/dsp/bin/adsapproval_yieldone_result.sh

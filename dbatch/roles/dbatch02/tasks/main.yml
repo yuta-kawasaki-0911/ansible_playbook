@@ -1,0 +1,40 @@
+---
+- name: create directory
+  file:
+    path: /var/app/maintenance/monitoring
+    state: directory
+    mode: '0755'
+
+- name: copy scripts
+  copy:
+    src: '{{ item }}'
+    dest: /var/app/maintenance/monitoring/{{ item }}
+    mode: '0755'
+  with_items:
+    - daily_budget_control_check.sh
+    - imp_check.sh
+    - error_log_size_check.sh
+
+- name: set cron daily_budget_control_check.sh
+  cron:
+    name: 'auto daily budget control check'
+    minute: '0'
+    hour: '8'
+    job: '/var/app/maintenance/monitoring/daily_budget_control_check.sh >/dev/null 2>&1'
+
+- name: set cron imp_check.sh
+  cron:
+    name: 'imp check'
+    minute: '50'
+    job: '/var/app/maintenance/monitoring/imp_check.sh >/dev/null 2>&1'
+
+- name: set cron error_log_size_check.sh
+  cron:
+    name: 'log error check datadog'
+    minute: '*/10'
+    job: /var/app/maintenance/monitoring/error_log_size_check.sh >/dev/null 2>&1
+
+- name: set sudoers
+  copy:
+    src: sysops
+    dest: /etc/sudoers.d/

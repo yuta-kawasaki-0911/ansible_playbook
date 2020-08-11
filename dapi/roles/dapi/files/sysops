@@ -1,0 +1,2 @@
+devops_cebu ALL=(dsp) NOPASSWD: /usr/bin/hdfs dfs -put /var/app/fs/dsp/data/bidreq4ml/* bid/
+%sysops ALL=(root) NOPASSWD: /var/app/maintenance/bidreq4ml/main.sh

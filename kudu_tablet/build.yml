@@ -1,0 +1,11 @@
+---
+- name: control onpremise server
+  hosts: target
+  become: true
+  roles:
+    - { role: common, tags: common} ##build tablet server
+    - { role: ../common_build/roles/java }
+# この辺り必要ないのが確認できたら削除する
+#    - { role: yumrepo, tags: yumrepo} #
+#    - { role: agentupdate, tags: agentupdate} ##agent-update
+    - { role: service, tags: service} ##agent-update

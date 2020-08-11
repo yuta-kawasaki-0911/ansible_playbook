@@ -1,0 +1,2 @@
+update_tomcat_config: roles/apache_tomcat/files/server.xml
+tomcat_config_path: /usr/local/tomcat/conf/server.xml

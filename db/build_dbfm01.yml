@@ -1,0 +1,12 @@
+---
+- hosts: add
+  become: yes
+  vars_files:
+    - vars/dbfm01.yml
+  roles:
+    - ../common_build/roles/common
+    - mysql
+    - { role: ../common_build/roles/mount, tags: mount } 
+    - cron_dbfm01
+
+

@@ -1,0 +1,5 @@
+---
+- hosts: datanode
+  become: yes
+  tasks:
+    - command: service hadoop-hdfs-datanode start

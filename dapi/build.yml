@@ -1,0 +1,36 @@
+---
+- hosts: add
+  become: true
+  roles:
+    - ../common_build/roles/common
+    - ../common_build/roles/java
+  tasks:
+    - name: sysctl.confの値を一部変更
+      sysctl:
+        name: '{{ item.name }}'
+        value: '{{ item.value }}'
+        state: present
+      with_items:
+        - { name: net.netfilter.nf_conntrack_max, value: '500000' }
+        - { name: net.nf_conntrack_max, value: '500000' }
+        - { name: net.core.somaxconn, value: '60000' }
+        - { name: net.core.netdev_max_backlog, value: '60000' }
+
+- hosts: add
+  become: true
+  vars:
+    today: "{{ lookup('pipe', 'date +%Y-%m-%d') }}"
+  vars_files:
+    - vars/mount.yml
+    - vars/ssl_bidding-dsp.ad-m.asia.yml
+    - vars/ssl_data-dsp.ad-m.asia.yml
+    - vars/ssl_optout-dsp.ad-m.asia.yml
+  roles:
+    - apache_tomcat #cronやlogrotateの設定もこの中にある
+    - ../common_build/roles/mount
+    - dapi
+    - lsyncd
+    - hadoop_client
+    - ssl_bidding-dsp.ad-m.asia
+    - ssl_data-dsp.ad-m.asia
+    - ssl_optout-dsp.ad-m.asia

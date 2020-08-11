@@ -1,0 +1,16 @@
+#sdn03
+sysdev: [ sdb, sdc, sdd, sde ]
+mount: 
+  - { sysdev: b, disk: 1 }
+  - { sysdev: c, disk: 2 }
+  - { sysdev: d, disk: 3 }
+  - { sysdev: e, disk: 4 }
+common_files:
+  - stg/hadoop-env.sh
+  - stg/yarn-env.sh
+  - stg/core-site.xml
+dn_files:
+  - stg/hdfs-site.xml
+  - stg/yarn-site.xml
+  - stg/mapred-site.xml
+

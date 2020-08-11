@@ -1,0 +1,13 @@
+---
+- name: stop zabbix-agent service
+  shell:
+    /etc/init.d/zabbix-agent stop
+- name: edit chkconfig for zabbix-agent 
+  shell:
+    chkconfig zabbix-agent off
+#- name: start zabbix-agent service
+#  shell:
+#    /etc/init.d/zabbix-agent start
+#- name: restart zabbix-agent service
+#  shell:
+#    /etc/init.d/zabbix-agent restart

@@ -1,0 +1,1 @@
+%sysops    ALL=(dd-agent)    NOPASSWD:    ALL

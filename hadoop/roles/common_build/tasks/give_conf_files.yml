@@ -1,0 +1,10 @@
+---
+- name: hadoopの設定ファイル配布(共通)
+  copy:
+    src: ../../common_build/files/{{ item }}
+    dest: /etc/hadoop/conf/
+    owner: root
+    group: root
+    mode: 0644
+  with_items: '{{ common_files }}'
+

@@ -1,0 +1,10 @@
+---
+- hosts: target
+  become: yes
+  tasks:
+    - name: check mysql version
+      command: mysql --version
+      register: mysql_ver_result
+
+    - name: mysql version out
+      debug: var=mysql_ver_result.stdout_lines

@@ -1,0 +1,6 @@
+---
+- hosts: add
+  become: true
+  roles:
+    - ../../common_build/roles/common
+    - ../roles/sweb

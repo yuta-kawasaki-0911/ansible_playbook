@@ -1,0 +1,8 @@
+---
+- hosts: production
+  become: yes
+  tasks:
+    - name: irqbalanceをインストール
+      yum : name=irqbalance state=latest
+    - name: 起動
+      command: /etc/init.d/irqbalance start

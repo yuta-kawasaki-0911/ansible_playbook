@@ -1,0 +1,8 @@
+---
+- name: CDHのyum repositoryの設定
+  copy:
+    src: ../../common_build/files/{{ item }}
+    dest: /etc/yum.repos.d/
+  with_items:
+      - cloudera-cdh5.repo
+      - cloudera-gplextras5.repo

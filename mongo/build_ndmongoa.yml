@@ -1,0 +1,11 @@
+---
+- hosts: add
+  become: yes
+  vars_files:
+    - vars/ndmongoa_cron.yml
+  vars:
+    host: ndmongoa
+  roles:
+    - ../common_build/roles/common
+    - mongodb2.6
+    - cron

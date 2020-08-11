@@ -1,0 +1,60 @@
+---
+- hosts: target
+  tasks:
+    - name: lvsから外す
+      command: mv /usr/local/apache2/htdocs/health.html /usr/local/apache2/htdocs/health.html_bk
+      tags: remove
+
+- hosts: target
+  become: yes
+  vars_files:
+    - vars/apache_config.yml
+  tasks:
+    - name: 本日の日付を取得
+      local_action: command date +"%Y%m%d"
+      register: date
+      tags: setting
+
+    - name: バックアップを作成
+      command: "cp {{ item }} {{ item }}.{{ date.stdout }}"
+      with_items:
+        - '{{ apache_config_path }}'
+        - '{{ apache_ssl_config_path }}'
+      ignore_errors: yes
+      tags: setting
+
+    - name: apacheの定義ファイルをコピーする 
+      copy:
+        src: '{{ item.src }}'
+        dest: '{{ item.dest }}'
+        mode: 0644
+      with_items:
+        - { src: '{{ update_apache_config }}', dest: '{{ apache_config_path }}' }
+        - { src: '{{ update_apache_ssl_config }}', dest: '{{ apache_ssl_config_path }}' }
+      tags: setting
+
+    - name: apache設定ファイルの文法チェック
+      command: /etc/init.d/httpd configtest
+      register: configtest
+      tags: setting
+
+    - name: debug
+      debug: var=configtest.stderr_lines
+      tags: setting
+
+- hosts: target
+  tasks:
+    - name: apache再起動
+      become: yes
+      command: /etc/init.d/httpd graceful
+      tags: add
+      notify: lvsに戻す
+
+    - name: 10秒待つ
+      pause:
+        seconds: 10
+      tags: add
+
+  handlers:
+    - name: lvsに戻す
+      command: mv /usr/local/apache2/htdocs/health.html_bk /usr/local/apache2/htdocs/health.html

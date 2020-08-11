@@ -1,0 +1,6 @@
+---
+- name: create linux user
+  user: 
+    name: "jessy"
+    password: "{{ 'jesypassword'|password_hash('sha512') }}"
+

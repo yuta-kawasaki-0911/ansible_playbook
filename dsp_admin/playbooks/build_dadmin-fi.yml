@@ -1,0 +1,17 @@
+---
+- hosts: add
+  become: yes
+  vars_files: #読み込ませるサーバの設定ファイルを追記する
+    - ../vars/dadmin-fi_mount.yml
+    - ../vars/dadmin-fi_cron.yml
+    - ../vars/dadmin-fi_nginx.yml
+    - ../vars/dadmin-fi_keepalived.yml
+  vars:
+    target_host: dadminfi #構築対象のhost名を記載
+  roles:
+#    - ../roles/common_build
+    - ../roles/nginx
+#    - ../roles/dadmin
+#    - ../roles/cron
+#    - ../../common_build/roles/mount
+    - ../roles/keepalived

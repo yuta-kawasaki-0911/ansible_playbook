@@ -1,0 +1,10 @@
+---
+- hosts: target
+  become: yes
+  tasks:
+    - name: check java version
+      shell: java -version 2>&1 | grep version | awk '{print $3}' | sed 's/"//g'
+      register: java_ver_result
+
+    - name: java version out
+      debug: var=java_ver_result.stdout_lines

@@ -1,0 +1,12 @@
+/var/log/lsyncd/*log {
+	missingok
+	daily
+	rotate 30
+	notifempty
+	sharedscripts
+	postrotate
+	if [ -f /var/lock/lsyncd ]; then
+		/sbin/service lsyncd restart > /dev/null 2>/dev/null || true
+	fi
+	endscript
+}

@@ -1,0 +1,19 @@
+conf_files:
+  - { src: bidresult/default.conf, dest: /etc/nginx/conf.d/, mode: '0644' }
+  - { src: bidresult/bidresult_http.conf, dest: /etc/nginx/conf.d/, mode: '0644' }
+  - { src: bidresult/bidresult_https.conf, dest: /etc/nginx/conf.d/, mode: '0644' }
+  - { src: bidresult/cache_block.conf, dest: /etc/nginx/conf.d/, mode: '0644' }
+  - { src: bidresult/errorpage.conf, dest: /etc/nginx/conf.d/, mode: '0644' }
+  - { src: bidresult/prefetch.conf, dest: /etc/nginx/conf.d/, mode: '0644' }
+  - { src: bidresult/proxy_cache.conf, dest: /etc/nginx/conf.d/, mode: '0644' }
+  - { src: bidresult/spamfilter.conf, dest: /etc/nginx/conf.d/, mode: '0644' }
+  - { src: bidresult/ssl.conf, dest: /etc/nginx/conf.d/, mode: '0644' }
+  - { src: bidresult/nginx.conf, dest: /etc/nginx/, mode: '0644' }
+
+robots_txt:
+  - { src: bidresult/40x.html, dest: /usr/local/nginx/html/, mode: '0644' }
+  - { src: bidresult/50x.html, dest: /usr/local/nginx/html/, mode: '0644' }
+  - { src: bidresult/error.html, dest: /usr/local/nginx/html/, mode: '0644' }
+  - { src: bidresult/index.html, dest: /usr/local/nginx/html/, mode: '0644' }
+  - { src: bidresult/openx.html, dest: /usr/local/nginx/html/, mode: '0755' }
+  - { src: bidresult/robots.txt, dest: /usr/local/nginx/html/, mode: '0644' }

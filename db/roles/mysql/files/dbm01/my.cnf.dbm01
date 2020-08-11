@@ -1,0 +1,88 @@
+[client]
+#password       = your_password
+port            = 3306
+socket          = /var/run/mysql/mysql.sock
+
+
+[mysqld]
+log-bin
+server-id       = 70
+port            = 3306
+socket          = /var/run/mysql/mysql.sock
+datadir         = /data/mysql
+skip-external-locking
+
+# buffers
+key_buffer = 128M
+# 5/8
+# max_allowed_packet = 64M
+table_cache = 1024
+sort_buffer_size = 1M
+read_buffer_size = 1M
+read_rnd_buffer_size = 2M
+myisam_sort_buffer_size = 64M
+#max_connections = 512
+max_connections = 1024
+#thread_cache_size = 128
+thread_cache_size = 1024
+query_cache_size = 512M
+
+innodb_buffer_pool_size=5G
+innodb_additional_mem_pool_size=20M
+innodb_file_format=Barracuda
+innodb_file_per_table=1
+innodb_flush_method=O_DIRECT
+innodb_log_file_size=256M
+innodb_log_files_in_group=2
+innodb_log_buffer_size=64M
+character-set-server=utf8
+skip-character-set-client-handshake
+
+#innodb_doublewrite=0
+# 5/9 
+innodb_flush_log_at_trx_commit=0
+innodb_io_capacity=1000
+# innodb_io_capacity デフォルト値：200
+# RAID：500 ～ 1000
+# SSD：2000 ～ 5000
+# IO-Drive2:10000 ～ 50000
+#innodb_io_capacity_max=6000
+innodb_thread_concurrency = 0
+innodb_buffer_pool_instances = 8
+innodb_read_io_threads=12
+innodb_write_io_threads=12
+
+slow_query_log = 1
+long_query_time = 2
+
+wait_timeout=60
+expire_logs_days=7
+
+[safe_mysqld]
+log-error       = /var/log/mysql/mysqld.log
+socket          = /var/run/mysql/mysql.sock
+
+[mysqldump]
+socket          = /var/run/mysql/mysql.sock
+quick
+max_allowed_packet = 16M
+
+[mysql]
+no-auto-rehash
+# Remove the next comment character if you are not familiar with SQL
+#safe-updates
+
+[myisamchk]
+key_buffer_size = 20M
+sort_buffer_size = 20M
+read_buffer = 2M
+write_buffer = 2M
+
+[mysqlhotcopy]
+interactive-timeout
+
+[mysqld_multi]
+mysqld     = /usr/bin/mysqld_safe
+mysqladmin = /usr/bin/mysqladmin
+log        = /var/log/mysqld_multi.log
+

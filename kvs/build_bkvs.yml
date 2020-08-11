@@ -1,0 +1,13 @@
+---
+- hosts: add_bkvs
+  become: yes
+  vars_files:
+    - vars/bkvs_mount.yml
+    - vars/bkvs_cron.yml
+  vars:
+    host: bkvs
+  roles:
+    - ../common_build/roles/common
+    - redis
+    - ../common_build/roles/mount
+    - cron

@@ -1,0 +1,4 @@
+update_apache_config: roles/apache_tomcat/files/httpd.conf
+update_apache_ssl_config: roles/apache_tomcat/files/httpd-ssl.conf
+apache_config_path: /usr/local/apache2/conf/httpd.conf
+apache_ssl_config_path: /usr/local/apache2/conf/extra/httpd-ssl.conf

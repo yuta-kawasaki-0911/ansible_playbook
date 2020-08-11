@@ -1,0 +1,27 @@
+---
+- name: install parted
+  yum:
+    name: parted
+
+- name: partitioning
+  shell: /sbin/parted --script /dev/{{ item }} 'mklabel gpt' && /sbin/parted --script /dev/{{ item }} "mkpart {{ item }} ext4 0% 100%"
+  with_items:
+    - '{{ sysdev }}'
+
+- name: create filesystem
+  filesystem:
+    fstype: ext4
+    dev: /dev/{{ item }}
+  async: 14400
+  poll: 60
+  with_items:
+    - '{{ sysdev }}'
+
+- name: mount
+  mount:
+    src: /dev/sd{{ item.sysdev }}
+    path: /data/disk{{ item.disk }}
+    opts: noatime
+    fstype: ext4
+    state: mounted
+  with_items: '{{ mount }}'

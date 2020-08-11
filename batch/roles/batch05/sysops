@@ -1,0 +1,4 @@
+%sysops ALL=(hdfs) NOPASSWD: /usr/bin/hdfs dfs -ls *
+%sysops ALL=(hdfs) NOPASSWD: /usr/bin/hdfs dfs -text *
+%sysops ALL=(hdfs) NOPASSWD: /usr/bin/hdfs dfs -count *
+%sysops ALL=(root) NOPASSWD: /usr/bin/java -jar /home/dsp/3pas_cv_path_check.jar *

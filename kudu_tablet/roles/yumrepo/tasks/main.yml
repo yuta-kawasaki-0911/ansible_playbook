@@ -1,0 +1,4 @@
+- name: cloudera-managerリポジトリのコピー
+  copy: >
+    src=cloudera-manager.repo
+    dest=/etc/yum.repos.d/

@@ -1,0 +1,6 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+    - name: restart MySQL
+      command: /etc/init.d/mysql restart

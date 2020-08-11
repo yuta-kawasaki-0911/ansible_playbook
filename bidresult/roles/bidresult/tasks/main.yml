@@ -1,0 +1,24 @@
+---
+- name: error_log_count.shのcrontabの設定
+  cron:
+    name: error_log_count
+    minute: "*/1"
+    job: "/var/app/maintenance/monitoring/error_log_count.sh >/dev/null 2>&1"
+
+- name: nginx_errorlog_countのcrontabの設定
+  cron:
+    name: nginx_errorlog_count
+    minute: "05"
+    job: "/var/app/maintenance/monitoring/nginx_errorlog_count.sh >/dev/null 2>&1"
+
+- name: iptablesのバックアップを作成
+  shell: iptables-save > /etc/sysconfig/iptables.`date +%Y%m%d`
+
+- name: iptablesの設定ファイルをコピー
+  copy:
+    src: iptables
+    dest: /etc/sysconfig/iptables
+    backup: yes
+
+- name: iptablesの設定ファイルを反映
+  shell: iptables-restore < /etc/sysconfig/iptables

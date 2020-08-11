@@ -1,0 +1,12 @@
+---
+- hosts: add
+  vars_files:
+    - vars/ndmongos_cron.yml
+    - vars/n-ndmongos_mount.yml
+  vars:
+    host: ndmongos
+  roles:
+    - ../common_build/roles/common
+    - mongodb2.6
+    - cron
+    - ../common_build/roles/mount

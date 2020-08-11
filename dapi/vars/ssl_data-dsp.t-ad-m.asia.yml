@@ -1,0 +1,6 @@
+update_data_crt: data-dsp.t-ad-m.asia.crt.to20210228
+update_data_key: data-dsp.t-ad-m.asia.key.to20210228
+update_data_cer: data-dsp.t-ad-m.asia.cer.to20210228
+data_crt_path: /usr/local/apache2/conf/ssl/data-dsp.t-ad-m.asia.crt
+data_key_path: /usr/local/apache2/conf/ssl/data-dsp.t-ad-m.asia.key
+data_cer_path: /usr/local/apache2/conf/ssl/data-dsp.t-ad-m.asia.cer

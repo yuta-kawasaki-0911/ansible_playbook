@@ -1,0 +1,3 @@
+mycnf:
+  - { src: dbm04/my.cnf.dbm04, dest: /etc/my.cnf mode: '0644' }
+

@@ -1,0 +1,14 @@
+/var/log/hp-snmp-agents/cma.log {
+  rotate 5
+  size 5M
+  compress
+  postrotate
+     /usr/bin/killall -s SIGUSR2 cmahealthd cmastdeqd cmahostd cmathreshd cmaperfd cmasm2d cmapeerd cmaeventd cmafcad cmasasd cmaidad cmaided cmascsid
+  
+  ps -el | grep cmarackd
+  status=`echo $?`
+        if [ $status == 0 ] ; then
+          /usr/bin/killall -s SIGUSR2 cmarackd
+        fi 
+  endscript
+}

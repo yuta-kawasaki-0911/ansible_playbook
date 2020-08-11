@@ -1,0 +1,4 @@
+devops_cebu ALL=(root) NOPASSWD: /etc/init.d/datadog-agent restart
+%sysops ALL=(tomcat) NOPASSWD: /bin/tar -C /var/app/fs/dmp/data/synccookie -xzf /var/app/fs/dmp/data/synccookie/*
+%sysops ALL=(tomcat) NOPASSWD: /bin/rm -rf /var/app/fs/dmp/data/synccookie/*
+%sysops ALL=(dd-agent) NOPASSWD: ALL

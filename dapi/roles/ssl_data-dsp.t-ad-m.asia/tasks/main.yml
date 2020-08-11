@@ -1,0 +1,57 @@
+---
+- name: 本日の日付を取得
+  local_action: command date +"%Y%m%d"
+  register: date
+
+- name: バックアップを作成
+  command: "cp {{ item }} {{ item }}.{{ date.stdout }}"
+  with_items:
+    - '{{ data_crt_path }}'
+    - '{{ data_key_path }}'
+    - '{{ data_cer_path }}'
+  ignore_errors: yes
+
+- name: ファイルをコピー
+  copy:
+    src: '{{ item.src }}'
+    dest: '{{ item.dest }}'
+    mode: 0755
+  with_items:
+    - { src: '{{ update_data_crt }}', dest: '{{ data_crt_path }}' }
+    - { src: '{{ update_data_key }}', dest: '{{ data_key_path }}' }
+    - { src: '{{ update_data_cer }}', dest: '{{ data_cer_path }}' }
+
+- name: 鍵ファイルの権限変更
+  file:
+    path: '{{ data_key_path }}'
+    mode: 0644
+
+#debug
+- name: ssl証明書の確認
+  command: openssl x509 -text -noout -in '{{ data_crt_path }}'
+  register: check_data_crt
+
+- name: 鍵の一致のテスト(cn_data-dsp.ad-m.asia.cer)
+  shell: openssl x509 -noout -modulus -in '{{ data_crt_path }}' | openssl md5
+  register: match_data_crt
+
+- name: 鍵の一致のテスト(data-dsp.ad-m.asia.key)
+  shell: openssl rsa -noout -modulus -in '{{ data_key_path }}' | openssl md5
+  register: match_data_key
+
+- name: apache設定ファイルの文法チェック
+  command: /etc/init.d/httpd configtest
+  register: configtest
+  ignore_errors: yes
+
+- name: debug
+  debug: var=check_data_crt.stdout_lines
+
+- name: debug
+  debug: var=match_data_crt.stdout_lines
+
+- name: debug
+  debug: var=match_data_key.stdout_lines
+
+- name: debug
+  debug: var=configtest.stderr_lines

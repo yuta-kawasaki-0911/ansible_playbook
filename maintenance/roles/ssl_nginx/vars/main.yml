@@ -1,0 +1,3 @@
+---
+certificatedir: /etc/nginx/conf.d/sync-dsp.ad-m.asia/
+now_date: "{{ lookup('pipe','date +%Y%m%d') }}"

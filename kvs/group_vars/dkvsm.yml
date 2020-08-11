@@ -1,0 +1,8 @@
+logrotate: 
+  - { file: backup_log.sh, dest: /etc/fsdkvs/bin, owner: tomcat, mode: "0755" }
+  - { file: lib-daily.sh, dest: /etc/fsdkvs/bin, owner: root, mode: "0755" }
+
+fsdkvs:
+  - { file: fsdkvs, dest: /etc/init.d/fsdkvs, owner: root, mode: "0755" }
+  - { file: bin_fsdkvs, dest: /etc/fsdkvs/bin/fsdkvs, owner: root, mode: "0755" }
+ 

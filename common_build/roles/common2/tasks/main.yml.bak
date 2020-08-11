@@ -1,0 +1,109 @@
+---
+- name: copy repository for Centos6.3
+  yum: name={{ item }} state=present enablerepo=fullspeed
+  with_items:
+    - kernel-firmware-2.6.32-279.22.1_1.el63.x86_64
+    - kernel-2.6.32-279.22.1_1.el63.x86_64
+  when: ansible_distribution_version == '6.3'
+##Centos6.4
+- name: copy repository for Centos6.4
+  yum: name={{ item }} state=present enablerepo=fullspeed
+  with_items:
+    - kernel-firmware-2.6.32-358.23.2_1.el64.x86_64
+    - kernel-2.6.32-358.23.2_1.el64.x86_64    
+  when: ansible_distribution_version == '6.4'
+##Centos6.5
+- name: copy repository for Centos6.5
+  yum: name={{ item }} state=present enablerepo=fullspeed
+  with_items:
+    - kernel-firmware-2.6.32-431.29.2_1.el65.x86_64
+    - kernel-2.6.32-431.29.2_1.el65.x86_64  
+  when: ansible_distribution_version == '6.5'
+##Centos6.6
+- name: copy repository for Centos6.6
+  yum: name={{ item }} state=present enablerepo=fullspeed
+  with_items:
+    - kernel-firmware-2.6.32-504.30.3_1.el66.x86_64
+    - kernel-2.6.32-504.30.3_1.el66.x86_64
+  when: ansible_distribution_version == '6.6'
+##Centos6.7
+- name: copy repository for Centos6.7
+  yum: name={{ item }} state=present enablerepo=fullspeed
+  with_items:
+    - kernel-firmware-2.6.32-573.7.1_1.el67.x86_64
+    - kernel-2.6.32-573.7.1_1.el67.x86_64
+    - kernel-2.6.32-573.7.1_1.el67.x86_64 kernel-firmware-2.6.32-573.7.1_1.el67.x86_64
+  when: ansible_distribution_version == '6.7'
+
+- name: copy
+  copy: >
+    src=kernel-firmware-2.6.32-642.1.1_1.el68.x86_64.rpm
+    dest=/tmp/
+  when: ansible_distribution_version == '6.8'
+
+#- name: copy repository for Centos6.8 latest
+#  shell: rpm -ivh /tmp/kernel-firmware-2.6.32-642.1.1_1.el68.x86_64.rpm
+#  when: ansible_distribution_version == '6.8'
+##Centos6.8
+- name: copy repository for Centos6.8
+  yum: name={{ item }} state=present enablerepo=fullspeed
+  with_items:
+    - kernel-2.6.32-642.1.1_1.el68.x86_64
+  when: ansible_distribution_version == '6.8'
+
+##irqbalance
+- name: install irqbalance
+  yum: name=irqbalance state=present disablerepo=updates
+
+##irqbalance
+- name: service
+  service: name=irqbalance state=started
+
+- name: check
+  stat: path={{ tx0 }}
+  register: fm
+- name: aaa
+  shell: echo "echo "ffffffff" > /sys/class/net/em2/queues/tx-0/xps_cpus" >> /etc/rc.local
+  when: fm.stat.exists
+
+- name: check
+  stat: path={{ rx0 }}
+  register: fm
+- name: aaa
+  shell: echo "echo "ffffffff" > /sys/class/net/em2/queues/rx-0/xps_cpus" >> /etc/rc.local
+  when: fm.stat.exists
+
+- name: check
+  stat: path={{ rx1 }}
+  register: fm
+- name: aaa
+  shell: echo "echo "ffffffff" > /sys/class/net/em2/queues/rx-1/xps_cpus" >> /etc/rc.local
+  when: fm.stat.exists0
+
+- name: check
+  stat: path={{ rx2 }}
+  register: fm
+- name: aaa
+  shell: echo "echo "ffffffff" > /sys/class/net/em2/queues/rx-2/xps_cpus" >> /etc/rc.local
+  when: fm.stat.exists0
+
+- name: check
+  stat: path={{ rx3 }}
+  register: fm
+- name: aaa
+  shell: echo "echo "ffffffff" > /sys/class/net/em2/queues/rx-3/xps_cpus" >> /etc/rc.local
+  when: fm.stat.exists0
+
+- name: check
+  stat: path={{ rx4 }}
+  register: fm
+- name: aaa
+  shell: echo "echo "ffffffff" > /sys/class/net/em2/queues/rx-4/xps_cpus" >> /etc/rc.local
+  when: fm.stat.exists0
+
+- name: check
+  stat: path={{ rx5 }}
+  register: fm
+- name: aaa
+  shell: echo "echo "ffffffff" > /sys/class/net/em2/queues/rx-5/xps_cpus" >> /etc/rc.local
+  when: fm.stat.exists0

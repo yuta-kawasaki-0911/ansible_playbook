@@ -1,0 +1,11 @@
+---
+- name: remove old file
+  file:
+    path: /usr/lib/hadoop/lib/slf4j-log4j12.jar
+    state: absent
+
+- name: シンボリックリンクの調整
+  file:
+    src: /usr/lib/zookeeper/lib/slf4j-log4j12-1.7.5.jar
+    dest: /usr/lib/hadoop/lib/slf4j-log4j12.jar
+    state: link

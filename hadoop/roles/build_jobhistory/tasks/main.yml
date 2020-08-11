@@ -1,0 +1,70 @@
+---
+#- name: ディスク、パーティション設定(共通)
+#  include: partition_config.yml
+# []noatimeの設定はslaveだけだからそこもうちょっと見直す
+
+- name: CDHのyum repositoryの設定(共通)
+  include: ../../common_build/tasks/CDH_yum_conf.yml
+
+- name: Hadoop用カーネルパラメータを設定(共通)
+  include: ../../common_build/tasks/Hd_karnel_conf.yml
+
+- name: nn_jobhistoryミドルウェアのインストール
+  yum: name={{item}} state=present
+  with_items:
+    - hadoop-mapreduce-historyserver
+    - hadoop-hdfs-namenode
+    - hadoop-lzo
+    - hadoop-hdfs-journalnode
+    - zookeeper-server
+
+- name: シンボリックリンクの調整
+  include: ../../common_build/tasks/create_link_slf4j-log4j12jar.yml
+
+- name: 自動起動の設定をoffにしておく(nn)
+  service: name={{ item }} enabled=off
+  with_items:
+    - hadoop-hdfs-journalnode
+    - hadoop-mapreduce-historyserver
+    - zookeeper-server
+
+- name: 必要なユーザの作成
+  include: ../../common_build/tasks/create_user.yml
+
+- name: confファイルの準備
+  include: ../../common_build/tasks/create_conf.yml
+
+- name: 設定ファイルを配布(共通)
+  include: ../../common_build/tasks/give_conf_files.yml
+
+- name: 設定ファイルを配布(nn_jobhistory)
+  copy:
+    src: '{{ item }}'
+    dest: /etc/zookeeper/conf/
+    owner: root
+    group: root
+    mode: 644
+  with_items:
+      - hdfs-site.xml
+      - yarn-site.xml
+      - mapred-site.xml
+
+- name: ディレクトリの作成
+  file:
+    path: '{{ item }}'
+    state: directory
+  with_items:
+    - /hadoop/dfs/jn
+
+- name: オーナー設定
+  file:
+    path: /hadoop/{{ item }}
+    owner: hdfs
+    group: hadoop
+  with_items:
+    - dfs
+
+- name: モード権限設定
+  file:
+    path: /hadoop
+    mode: 755

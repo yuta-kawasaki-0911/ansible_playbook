@@ -1,0 +1,4 @@
+---
+- hosts: batch:hmn:hsn:bidresult:capi:dadmin:dash:iapi:nn:relay:dapi:tapi:api:cbatch:dbatch02:dbatch03
+  roles:
+      - { role: javaprocess }

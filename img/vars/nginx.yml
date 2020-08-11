@@ -1,0 +1,26 @@
+conf_files:
+  - { src: img/default.conf, dest: /etc/nginx/conf.d/, mode: '0644' }
+  - { src: img/proxy_cache.conf, dest: /etc/nginx/conf.d/, mode: '0644' }
+  - { src: img/spamfilter.conf, dest: /etc/nginx/conf.d/, mode: '0644' }
+  - { src: img/ssl.conf, dest: /etc/nginx/conf.d/, mode: '0644' }
+  - { src: img/nginx.conf, dest: /etc/nginx/, mode: '0644' }
+  - { src: img/mime.types, dest: /etc/nginx/, mode: '0644' }
+  - { src: admatrix.jp.crt.to20191013, dest: /etc/nginx/conf.d/admatrix.jp.crt, mode: '0644' }
+  - { src: admatrix.jp.key.to20191013, dest: /etc/nginx/conf.d/admatrix.jp.nopass.key, mode: '0644' }
+
+robots_txt:
+  - { src: img/robots.txt, dest: /usr/local/nginx/html/, mode: '0644' }
+
+logrote:
+  - { src: logrote_nginx, dest: /etc/logrotate.d/nginx, mode: '0644' }
+
+cron:
+  - { src: cron/logrotate, dest: /etc/cron.daily/, mode: '0755' }
+  - { src: cron/trdads_backup_logs, dest: /etc/cron.daily/, mode: '0755' }
+  - { src: cron/trdads_backup_pictures, dest: /etc/cron.daily/, mode: '0755' }
+
+root_temp:
+  - { src: root_temp/backupLogsToRemoteServer.sh, dest: /root/temp/, mode: '0755' }
+  - { src: root_temp/backupPictureToRemoteServer.sh, dest: /root/temp/, mode: '0755' }
+  - { src: root_temp/setBackupVariables.sh, dest: /root/temp/, mode: '0755' }
+  - { src: root_temp/trdads_backup_logs, dest: /root/temp/, mode: '0755' }

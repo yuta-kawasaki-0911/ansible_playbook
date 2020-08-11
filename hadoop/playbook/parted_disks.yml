@@ -1,0 +1,5 @@
+---
+- hosts: stg_add
+  become: yes
+  roles:
+    - parted_disks

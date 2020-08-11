@@ -1,0 +1,4 @@
+update_crt: cn_admatrix.jp.crt.to20201112
+update_key: admatrix.jp.nopass.key.to20201112
+crt_path: /etc/nginx/conf.d/admatrix.jp.crt
+key_path: /etc/nginx/conf.d/admatrix.jp.nopass.key

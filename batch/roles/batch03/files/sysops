@@ -1,0 +1,16 @@
+devops_cebu ALL=(root) NOPASSWD: /etc/init.d/datadog-agent restart
+devops_cebu ALL=(dsp) NOPASSWD: /usr/bin/hdfs dfs -ls /user/dsp/bid/*
+%sysops ALL=(hdfs) NOPASSWD: /usr/bin/hdfs dfs -ls *
+%sysops ALL=(hdfs) NOPASSWD: /usr/bin/hdfs dfs -rm -r /user/dsp/bid*
+%sysops ALL=(hdfs) NOPASSWD: /usr/bin/hdfs dfs -count /user/dsp/bid/*
+%sysops ALL=(hdfs) NOPASSWD: /usr/bin/hdfs dfs -rm -r /user/hdfs/data/*
+%sysops ALL=(hdfs) NOPASSWD: /usr/bin/hdfs dfs -chown -R dsp /user/dsp/am/*
+%sysops ALL=(hdfs) NOPASSWD: /usr/bin/hdfs dfs -text /user/hdfs/account/*
+%sysops ALL=(hdfs) NOPASSWD: /usr/bin/hdfs dfs -get /user/hdfs/account/*
+%sysops ALL=(hdfs) NOPASSWD: /usr/bin/hdfs dfs -text /user/hdfs/data/*
+%sysops ALL=(tomcat) NOPASSWD: /var/app/analysis/monthly_sum_daily_summary.sh *
+%sysops ALL=(tomcat) NOPASSWD: /var/app/analysis/monthly_sum_daily_detail.sh *
+%sysops ALL=(tomcat) NOPASSWD: /var/app/analysis/idfa_send_extract.sh *
+%sysops ALL=(tomcat) NOPASSWD: /var/app/analysis/idfa_send_delete_extracted.sh *
+%sysops ALL=(tomcat) NOPASSWD: /var/app/analysis/bidinventory_log_extract.sh
+%sysops ALL=(tomcat) NOPASSWD: /var/app/analysis/bidinventory_log_delete_extracted.sh *

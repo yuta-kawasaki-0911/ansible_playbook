@@ -1,0 +1,14 @@
+---
+
+#rubyはこの時点でインストール済みなので、要否を確認する必要あり
+- name: install ruby
+  yum:
+    name: '{{ item }}'
+  with_items:
+    - gcc
+    - openssl-devel
+    - ruby
+
+- name: install mail
+  gem:
+    name: mail

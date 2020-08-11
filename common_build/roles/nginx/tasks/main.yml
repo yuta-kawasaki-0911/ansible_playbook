@@ -1,0 +1,62 @@
+---
+- name: nginxのインストール
+  yum:
+    name: nginx
+
+- name: 必要なディレクトリの作成
+  file:
+    state: directory
+    path: '{{ item.path }}'
+    mode: '{{ item.mode }}'
+  with_items:
+    - { path: /etc/nginx/conf.d, mode: '0755' }
+    - { path: /var/log/nginx, mode: '0755' }
+
+- name: 実行ユーザの作成
+  user:
+    name: nginx
+
+- name: 設定ファイルの配布
+  copy:
+    src: '{{ item.src }}'
+    dest: '{{ item.dest }}'
+    mode: '{{ item.mode }}'
+  with_items: '{{ conf_files }}'
+
+- name: robots.txtファイルの配置
+  copy:
+    src: '{{ item.src }}'
+    dest: '{{ item.dest }}'
+    mode: '{{ item.mode }}'
+  with_items: '{{ robots_txt }}'
+
+- name: error.htmlファイルの配置
+  file:
+    path: /usr/local/nginx/html/error.html
+    state: touch
+    mode: '0644'
+
+- name: index.html作成
+  file:
+    path: /usr/local/nginx/html/index.html
+    state: touch
+    mode: '0644'
+
+- name: index.htmlにホスト名を追記
+  lineinfile:
+    path: /usr/local/nginx/html/index.html
+    line: "<html><body><h1> {{ inventory_hostname_short }} It works!</h1></body></html>"
+
+- name: health.html_bk作成
+  file:
+    path: /usr/local/nginx/html/health.html_bk
+    state: touch
+    mode: '0777'
+
+- name: health.htmlにホスト名を追記
+  lineinfile:
+    path: /usr/local/nginx/html/health.html_bk
+    line: '{{ inventory_hostname }}'
+
+- name: nginxの起動
+  command: /usr/local/nginx/sbin/nginx

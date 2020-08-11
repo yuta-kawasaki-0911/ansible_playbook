@@ -1,0 +1,4 @@
+mycnf:
+  - { src: dbfm01/my.cnf, dest: /root/.my.cnf mode: '0755' }
+mount_infos:
+  - { src: 192.168.134.206:/nas, dest: /nas, opts: "rsize=8192,wsize=8192,hard,intr" }

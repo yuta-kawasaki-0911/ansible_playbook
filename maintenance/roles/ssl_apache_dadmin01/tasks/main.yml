@@ -1,0 +1,15 @@
+---
+##backup
+- name: backup certificate and key
+  shell: >
+    cp {{ admin_dsp }}Domain_CA_SHA2.cer {{ admin_dsp }}Domain_CA_SHA2.cer.{{ now_date }}; 
+    cp {{ admin_dsp }}admin-dsp.ad-m.asia.csr {{ admin_dsp }}admin-dsp.ad-m.asia.csr.{{ now_date }}; 
+    cp {{ admin_dsp }}admin-dsp.ad-m.asia.key {{ admin_dsp }}admin-dsp.ad-m.asia.key.{{ now_date }};
+    cp {{ admin_dsp }}cn_admin-dsp.ad-m.asia.cer {{ admin_dsp }}cn_admin-dsp.ad-m.asia.cer.{{ now_date }}; 
+##copy 
+- name: copy admin-dsp.ad-m.asia.cer 
+  copy: 
+    src: "{{ item }}"
+    dest: "/usr/local/apache2/conf/admin-dsp.ad-m.asia/"
+  with_fileglob: 
+    - "/ansible_o/maintenance/roles/ssl_apache/files/bidding-dsp.ad-m.asia/*"

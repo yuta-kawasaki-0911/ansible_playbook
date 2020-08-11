@@ -1,0 +1,57 @@
+---
+- name: sysctl.confの修正
+  copy:
+    src: sysctl.conf
+    dest: /etc/
+    mode: '0644'
+
+- name: error_log_count.shの設定
+  cron:
+    name: error_log_count.sh
+    minute: "*/1"
+    job: "/var/app/maintenance/monitoring/error_log_count.sh >/dev/null 2>&1"
+
+- name: copy error_log_count.sh
+  copy:
+    src: error_log_count.sh
+    dest: /var/app/maintenance/monitoring/
+    mode: "0755"
+
+- name: copy scripts
+  copy:
+    src: root_temp/{{ item.src }}
+    dest: /root/temp/
+    mode: '{{ item.mode }}'
+  with_items:
+    - { src: backupLogsToRemoteServer.sh, mode: '0755'}
+    - { src: setBackupVariables.sh, mode: '0755'}
+    - { src: trdads_backup_logs, mode: '0755'}
+    - { src: exe_cmd.sh, mode: '0700'}
+
+- name: nginx_errorlog_count.shの設定
+  cron:
+    name: nginx_errorlog_count.sh
+    minute: "05"
+    job: "/var/app/maintenance/monitoring/nginx_errorlog_count.sh >/dev/null 2>&1"
+
+- name: copy nginx_errorlog_count.sh
+  copy:
+    src: nginx_errorlog_count.sh
+    dest: /var/app/maintenance/monitoring/
+    mode: "0755"
+
+- name: cron.daily
+  copy:
+    src: relay_backup_logs
+    dest: /etc/cron.daily/
+    mode: "0755"
+
+- name: create_user
+  user:
+    name: devops_cebu
+
+- name: set sudoers of devops_cebu
+  copy:
+    src: sysops
+    dest: /etc/sudoers.d/
+    mode: "440"

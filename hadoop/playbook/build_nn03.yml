@@ -1,0 +1,6 @@
+- hosts: namenode03
+  become: yes
+  roles:
+#    - ../../common_build/roles/common
+#    - ../../common_build/roles/common2
+    - ../roles/build_nn

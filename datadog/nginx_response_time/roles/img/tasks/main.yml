@@ -1,0 +1,46 @@
+---
+- name: copy yml
+  copy:
+    src: nginx_response_time.yaml
+    dest: /etc/datadog-agent/conf.d/.
+  become: true
+
+- name: copy sh
+  copy:
+    src: log_file_helper.sh
+    dest: /etc/datadog-agent/checks.d/.
+  become: true
+
+- name: copy py
+  copy:
+    src: nginx_response_time.py
+    dest: /etc/datadog-agent/checks.d/.
+  become: true
+
+- become: yes
+  file:
+    path: /etc/datadog-agent/conf.d/nginx_response_time.yaml
+    owner: dd-agent
+    group: dd-agent
+    mode: 0644
+
+- become: yes
+  file:
+    path: /etc/datadog-agent/checks.d/nginx_response_time.py
+    owner: dd-agent
+    group: dd-agent
+    mode: 0644
+
+- become: yes
+  file:
+    path: /etc/datadog-agent/checks.d/log_file_helper.sh
+    owner: dd-agent
+    group: dd-agent
+    mode: 0644
+
+- name: restart datadog-agent
+  become: yes
+  service:
+    name: datadog-agent
+    state: restarted
+    enabled: yes

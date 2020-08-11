@@ -1,0 +1,38 @@
+---
+- hosts: nhsn
+  become: yes
+  vars:
+    pubkey: 
+      - #batch01公開鍵
+      - #batch03公開鍵
+  tasks:
+    - name: create group
+      group:
+        name: sysops
+    - name: create users
+      user: 
+        name: '{{ item.user_name }}'
+        group: '{{ item.group }}'
+        state: present
+      with_items:
+        - { user_name: sysops, group: sysops }
+    - name: create directory
+      file:
+        path: /home/sysops/.ssh
+        owner: sysops
+        mode: 0700
+        state: directory 
+    - name: create a authorized_keys file
+      file:
+        path: /home/sysops/.ssh/authorized_keys
+        state: touch
+        owner: sysops
+        mode: 0600
+    - name: add a public key
+      lineinfile:
+        path: /home/sysops/.ssh/authorized_keys
+        line: '{{ item }}'
+      with_items: '{{ pubkey }}'
+    - name: delete passwd
+      command: passwd -d sysops
+

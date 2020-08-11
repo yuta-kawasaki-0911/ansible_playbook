@@ -1,0 +1,84 @@
+---
+- name: lsyncdをインストール
+  yum:
+    name: lsyncd
+
+- name: lsyncdディレクトリを作成
+  file:
+    path: /var/log/lsyncd/
+    state: directory
+    mode: "755"
+
+- name:  lsyncd対象データの保存先を作成
+  file:
+    path: /nas/app/{{ ansible_default_ipv4.address }}
+    state: directory
+    owner: nobody
+    group: nobody
+    mode: "0777"
+
+- name: lsyncd対象データの保存のbid,bidinventoryフォルダを作成
+  file:
+    path: /nas/app/{{ ansible_default_ipv4.address }}/fs/dsp/data/{{item}}/
+    state: directory
+    owner: nobody
+    group: nobody
+    mode: "0755"
+  with_items:
+    - bid
+    - bidinventory
+
+- name: logroteのファイルをコピー
+  copy:
+    src: lsyncd
+    dest: /etc/logrotate.d/
+    mode: "0644"
+
+- name: lsyncd_rotate.shをコピー
+  copy: 
+    src: lsyncd_rotate.sh
+    dest: /root/maintenance/lsyncd/
+    mode: "0755"
+
+- name: lsyncd_rotate.shの確認
+  stat:
+    path: /root/maintenance/lsyncd/lsyncd_rotate.sh
+  register: lsyncd_rotate
+
+- name: /etc/lsync.confを作成.エラー出る
+  ignore_errors: yes
+  shell: sh /root/maintenance/lsyncd/lsyncd_rotate.sh
+  when: lsyncd_rotate.stat.exists
+
+- name: ↑で作成されたbidフォルダの権限を修正
+  command: chown tomcat. /var/app/fs/dsp/data/bid/{{item}}/..
+  with_pipe: date -d '1 days' +%Y-%m-%d
+
+- name: ↑で作成されたbidinventoryフォルダの権限を修正
+  command: chown tomcat. /var/app/fs/dsp/data/bidinventory/{{item}}/..
+  with_pipe: date -d '1 days' +%Y-%m-%d
+
+- name: 今日の日付のフォルダが存在しなければ作成
+  file:
+    path: /var/app/fs/dsp/data/{{item}}/{{today}}
+    state: directory
+    owner: tomcat
+    group: tomcat
+    mode: "0755"
+  with_items:
+    - bid
+    - bidinventory
+    - bidprocess
+
+- name: lsyncdファイルに実行権限付与
+  file:
+    path: /etc/sysconfig/lsyncd
+    state: file
+    mode: "0755"
+
+- name: lsyncd起動
+  service:
+    name: lsyncd
+    state: started
+    enabled: yes
+

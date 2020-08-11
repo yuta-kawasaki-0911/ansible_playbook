@@ -1,0 +1,4 @@
+---
+- name: fluentd
+  script: >
+    /ansible_o/maintenance/roles/fluentd/files/install-redhat-td-agent2.sh

@@ -1,0 +1,1 @@
+devops_cebu ALL=(dsp) NOPASSWD: /usr/bin/hdfs dfs -ls /user/dsp/bid/*

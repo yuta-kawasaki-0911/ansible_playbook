@@ -1,0 +1,6 @@
+[servers]
+api07
+
+[target]
+sapi01
+

@@ -1,0 +1,200 @@
+---
+- name: static-routeの追加
+  copy: 
+    src: static-routes
+    dest: /etc/sysconfig/
+
+- name: static-routeの反映
+  service:
+    name: network
+    state: restarted
+
+- name: sysctl.confの設定
+  copy:
+    src: sysctl.conf
+    dest: /etc/
+    mode: "0644"
+    backup: yes
+
+- name: limits.confの設定
+  copy:
+    src: limits.conf
+    dest: /etc/security/limits.conf
+
+- name: limits.confの設定の反映
+  command: su -
+
+- name: apacheとtomcatのインストール
+  yum:
+    name: "{{ item }}"
+  with_items:
+    - httpd
+    - apache-tomcat
+
+- name: irqbalanceのインストール
+  yum:
+    name: irqbalance
+
+- name: irqbalance自動起動
+  service:
+    name: irqbalance
+    state: started
+
+- name: tomcatユーザ作成
+  user:
+    name: tomcat
+
+- name: /var/app/fs/の作成
+  file:
+    path: /var/app/fs/dsp/config
+    state: directory
+    owner: tomcat
+    group: tomcat
+    mode: "0755"
+
+- name: .sshフォルダの作成
+  file:
+    dest: /home/tomcat/.ssh
+    state: directory
+    owner: tomcat
+    group: tomcat
+    mode: "700"
+
+- name: 鍵の有無をチェック
+  stat:
+    path: /home/tomcat/.ssh/id_rsa
+  register: id_rsa
+
+- name: 鍵の作成
+  become_user: tomcat
+  command: ssh-keygen -q -f /home/tomcat/.ssh/id_rsa -N ""
+  when: id_rsa.stat.exists == False
+
+- name: ssh-keyの設定
+  command: cat /home/tomcat/.ssh/id_rsa.pub
+  register: id_rsa_pub
+
+- name: 以下をdadmin01/dbatch02の/home/tomcat/.ssh/authorized_keysにコピーする
+  debug:
+    var: id_rsa_pub.stdout
+
+- name: root用batchファイルをコピー
+  copy:
+    src: cron/{{ item.src }}
+    dest: "{{ item.dest }}"
+    mode: "0755"
+  with_items:
+    - { src: lsyncd_rotate.sh, dest: /root/maintenance/lsyncd/}
+    - { src: response_delay_check.sh, dest: /var/app/maintenance/monitoring/ }
+    - { src: dapi_error_log_size_check.sh, dest: /var/app/maintenance/monitoring/ }
+    - { src: error_log_count.sh, dest: /var/app/maintenance/monitoring/ }
+
+- name: tomcat用batchファイルをコピー
+  copy:
+    src: cron/backup.sh
+    dest: /var/app/fs/dsp/bin/
+    owner: tomcat
+    group: tomcat
+    mode: "0755"
+
+- name: rootのcrontab設定
+  cron:
+    name: "{{item.name}}"
+    minute: "{{item.minute}}"
+    hour: "{{item.hour}}"
+    job: "{{item.job}}"
+  with_items:
+    - { name: lsyncd_rotate, minute: "5", hour: "0", job: "/root/maintenance/lsyncd/lsyncd_rotate.sh >/dev/null 2>&1"}
+    - { name: response_delay_check, minute: "*/5", hour: "*", job: "/var/app/maintenance/monitoring/response_delay_check.sh >/dev/null 2>&1"}
+    - { name: dapi_error_log_size_check, minute: "*/10", hour: "*", job: "/var/app/maintenance/monitoring/dapi_error_log_size_check.sh >/dev/null 2>&1"}
+    - { name: error_log_count, minute: "*/1", hour: "*", job: "/var/app/maintenance/monitoring/error_log_count.sh >/dev/null 2>&1"}
+
+- name: tomcatのcrontab設定
+  cron:
+    name: backup
+    minute: "0"
+    hour: "2"
+    job: "/var/app/fs/dsp/bin/backup.sh"
+    user: tomcat
+
+- name: /etc/fsdkvs/confの作成
+  file:
+    path: /etc/fsdkvs/conf
+    state: directory
+    owner: tomcat
+    group: tomcat
+    mode: "755"
+
+- name: sshでパスワードを必要としない設定
+  lineinfile:
+    path: /etc/sudoers
+    regexp: "Defaults   !visiblepw"
+    line: "Defaults   visiblepw"
+    validate: "/usr/sbin/visudo -cf %s"
+    backup: yes
+
+- name: tomcatのパスワードを消す
+  replace:
+    dest: /etc/shadow
+    regexp: "tomcat:!!:"
+    replace: "tomcat::"
+    backup: yes
+
+- name: sync_countのディレクトリ作成
+  file:
+    path: /var/app/fs/dsp/bin/sync/
+    state: directory
+    owner: tomcat
+    group: tomcat
+    mode: "755"
+
+- name: dailyshellの配置
+  copy:
+    src: cron/{{item.src}}
+    dest: "{{item.dest}}"
+  with_items:
+    - { src: apache_log_compress.sh, dest: /etc/cron.daily/, mode: "0755" }
+    - { src: tomcat_log_compress.sh, dest: /etc/cron.daily/, mode: "0755" }
+    - { src: tmpwatch, dest: /etc/cron.daily/, mode: "0755" }
+    - { src: cups, dest: /etc/cron.daily/, mode: "0700" }
+
+- name: nasのディレクトリ作成
+  file:
+    path: /nas/backup/dapi_logs/dapi27/apache/
+    state: directory
+    mode: "0755"
+
+- name: logrotateの配置
+  copy:
+    src: logrotate.d/{{ item }}
+    dest: /etc/logrotate.d/{{ item }}
+    mode: "0644"
+  with_items:
+    - cups
+    - dracut
+    - lsyncd
+    - syslog
+    - td-agent
+    - yum
+
+- name: apacheの設定ファイルをコピー
+  copy: 
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    mode: "0755"
+  with_items:
+    - { src: httpd.conf, dest: /usr/local/apache2/conf/httpd.conf }
+    - { src: httpd-ssl.conf, dest: /usr/local/apache2/conf/extra/httpd-ssl.conf }
+  tags: test
+
+- name: health.htmlの作成
+  file:
+    path: /usr/local/apache2/htdocs/health.html
+    state: touch
+    mode: "0777"
+
+- name: health.htmlにホスト名を追記
+  lineinfile:
+    path: /usr/local/apache2/htdocs/health.html
+    line: "{{ item }}"
+  with_lines: "hostname"

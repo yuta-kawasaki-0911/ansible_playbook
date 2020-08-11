@@ -1,0 +1,6 @@
+---
+- name: control onpremise server1
+  hosts: test
+  become: true
+  roles:
+    - { role: test, tags: test} ##restart apache's service

@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+  <property>
+    <name>dfs.nameservices</name>
+    <value>nameservice1</value>
+  </property>
+
+  <property>
+    <name>dfs.client.failover.proxy.provider.nameservice1</name>
+    <value>org.apache.hadoop.hdfs.server.namenode.ha.ConfiguredFailoverProxyProvider</value>
+  </property>
+
+  <property>
+    <name>dfs.ha.automatic-failover.enabled.nameservice1</name>
+    <value>true</value>
+  </property>
+
+  <property>
+    <name>ha.zookeeper.quorum</name>
+    <value>nn01.3pas.admatrix.jp:2181,nn02.3pas.admatrix.jp:2181,nn03.3pas.admatrix.jp:2181</value>
+  </property>
+
+  <property>
+    <name>dfs.ha.namenodes.nameservice1</name>
+    <value>nn01,nn02</value>
+  </property>
+
+  <property>
+    <name>dfs.namenode.name.dir.nameservice1.nn01</name>
+    <value>file:///hadoop/dfs/nn</value>
+  </property>
+
+  <property>
+    <name>dfs.namenode.shared.edits.dir.nameservice1.nn01</name>
+    <value>qjournal://nn01.3pas.admatrix.jp:8485;nn02.3pas.admatrix.jp:8485;nn03.3pas.admatrix.jp:8485/journalhdfs1</value>
+  </property>
+
+  <property>
+    <name>dfs.namenode.rpc-address.nameservice1.nn01</name>
+    <value>nn01.3pas.admatrix.jp:8020</value>
+  </property>
+
+　<property>
+    <name>dfs.namenode.servicerpc-address.nameservice1.nn01</name>
+    <value>nn01.3pas.admatrix.jp:8022</value>
+  </property>
+
+  <property>
+    <name>dfs.namenode.http-address.nameservice1.nn01</name>
+    <value>nn01.3pas.admatrix.jp:50070</value>
+  </property>
+
+  <property>
+    <name>dfs.namenode.https-address.nameservice1.nn01</name>
+    <value>nn01.3pas.admatrix.jp:50470</value>
+  </property>
+
+  <property>
+    <name>dfs.namenode.name.dir.nameservice1.nn02</name>
+    <value>file:///hadoop/dfs/nn</value>
+  </property>
+
+  <property>
+    <name>dfs.namenode.shared.edits.dir.nameservice1.nn02</name>
+    <value>qjournal://nn01.3pas.admatrix.jp:8485;nn02.3pas.admatrix.jp:8485;nn03.3pas.admatrix.jp:8485/journalhdfs1</value>
+  </property>
+
+  <property>
+    <name>dfs.namenode.rpc-address.nameservice1.nn02</name>
+    <value>nn02.3pas.admatrix.jp:8020</value>
+  </property>
+
+  <property>
+    <name>dfs.namenode.servicerpc-address.nameservice1.nn02</name>
+    <value>nn02.3pas.admatrix.jp:8022</value>
+  </property>
+
+  <property>
+    <name>dfs.namenode.http-address.nameservice1.nn02</name>
+    <value>nn02.3pas.admatrix.jp:50070</value>
+  </property>
+
+　<property>
+    <name>dfs.namenode.https-address.nameservice1.nn02</name>
+    <value>nn02.3pas.admatrix.jp:50470</value>
+  </property>
+
+  <property>
+    <name>dfs.journalnode.edits.dir</name>
+    <value>/hadoop/dfs/jn</value>
+  </property>
+
+  <property>
+    <name>dfs.journalnode.http-address</name>
+    <value>nn03.3pas.admatrix.jp:8480</value>
+  </property>
+
+  <property>
+    <name>dfs.journalnode.rpc-address</name>
+    <value>nn03.3pas.admatrix.jp:8485</value>
+  </property>
+
+  <property>
+    <name>dfs.permissions.superusergroup</name>
+    <value>hadoop</value>
+  </property>
+
+  <property>
+    <name>dfs.replication</name>
+    <value>3</value>
+  </property>
+
+  <property>
+    <name>dfs.blocksize</name>
+    <value>134217728</value>
+  </property>
+
+  <property>
+    <name>dfs.permissions.enabled</name>
+    <value>true</value>
+  </property>
+
+  <property>
+    <name>fs.permissions.umask-mode</name>
+    <value>022</value>
+  </property>
+
+  <property>
+    <name>dfs.encrypt.data.transfer.algorithm</name>
+    <value>rc4</value>
+  </property>
+
+　<property>
+    <name>dfs.datanode.hdfs-blocks-metadata.enabled</name>
+    <value>true</value>
+  </property>
+
+  <property>
+    <name>dfs.datanode.balance.bandwidthPerSec</name>
+    <value>52428800</value>
+  </property>
+
+  <property>
+    <name>dfs.client.read.shortcircuit</name>
+    <value>true</value>
+  </property>
+
+  <property>
+    <name>dfs.domain.socket.path</name>
+    <value>/var/run/hdfs-sockets/dn</value>
+  </property>
+
+  <property>
+    <name>dfs.client.read.shortcircuit.skip.checksum</name>
+    <value>false</value>
+  </property>
+
+  <property>
+    <name>dfs.client.domain.socket.data.traffic</name>
+    <value>false</value>
+  </property>
+
+　<property>
+    <name>dfs.datanode.hdfs-blocks-metadata.enabled</name>
+    <value>true</value>
+  </property>
+
+  <property>
+    <name>dfs.datanode.fsdataset.volume.choosing.policy</name>
+    <value>org.apache.hadoop.hdfs.server.datanode.fsdataset.RoundRobinVolumeChoosingPolicy</value>
+  </property>
+
+  <property>
+    <name>ipc.maximum.data.length</name>
+    <value>134217728</value>
+  </property>
+
+</configuration>

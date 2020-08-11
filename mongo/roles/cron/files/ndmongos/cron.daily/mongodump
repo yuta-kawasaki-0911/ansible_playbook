@@ -1,0 +1,12 @@
+#!/bin/bash -x
+
+MONGODUMP=/usr/bin/mongodump
+BACKUP_DEST=/nas/backup/mongodump/`date "+%Y%m%d"`
+TIMESTAMP=`date`
+LOG=/root/maintenance/mongodumplog.`date "+%Y%m%d_%H%M%S"`
+
+mkdir $BACKUP_DEST
+
+echo $line >> $LOG
+echo $TIMESTAMP >> $LOG
+$MONGODUMP -v --username root --password 'sysdev' --out $BACKUP_DEST >> $LOG

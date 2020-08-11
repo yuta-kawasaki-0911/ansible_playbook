@@ -1,0 +1,7 @@
+[test]
+192.168.100.122
+[nginx]
+192.168.100.118
+[web:children]
+test
+nginx
