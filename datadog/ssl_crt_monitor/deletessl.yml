@@ -1,4 +1,0 @@
----
-- hosts: tapi:api:img:capi:dadmin
-  roles:
-      - { role: delete }

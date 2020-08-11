@@ -1,8 +1,0 @@
----
-- hosts: production
-  become: yes
-  tasks:
-    - name: 名前に日付をつけてバックアップを作成
-      command: cp /etc/hadoop/conf/mapred-site.xml /etc/hadoop/conf/mapred-site.xml.20191205_reiwa
-    - name: 新しい設定ファイルを上書き
-      copy: src=files/mapred-site.xml dest=/etc/hadoop/conf/

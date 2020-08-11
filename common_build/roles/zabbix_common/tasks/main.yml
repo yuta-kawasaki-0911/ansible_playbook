@@ -1,7 +1,0 @@
----
-##
-- name: staging
-  shell: sed -i "s/^Hostname=.*/Hostname=`hostname -s`/g" /etc/zabbix/zabbix_agentd.conf;
-         sed -i "/^Timeout=/d" /etc/zabbix/zabbix_agentd.conf;
-         sed -i "/^# Timeout=.*/a\Timeout=30" /etc/zabbix/zabbix_agentd.conf;
-         chown zabbix /var/log/messages;

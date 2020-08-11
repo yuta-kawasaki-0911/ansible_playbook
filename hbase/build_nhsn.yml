@@ -1,7 +1,0 @@
----
-- hosts: nhsn
-  become: yes
-  roles:
-    - ../common_build/roles/common
-    - ../common_build/roles/java
-    - hsn

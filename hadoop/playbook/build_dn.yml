@@ -1,7 +1,0 @@
----
-- hosts: stg_add #prod_addかstg_addを選択
-  become: yes
-  roles:
-    - ../../common_build/roles/common
-    - ../../common_build/roles/java
-    - ../roles/build_dn

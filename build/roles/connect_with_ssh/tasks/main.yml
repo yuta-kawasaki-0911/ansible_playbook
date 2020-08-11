@@ -1,3 +1,0 @@
----
-- name: copy public key to client servers
-  command: ssh-copy-id tomcat@{{ inventory_hostname }}

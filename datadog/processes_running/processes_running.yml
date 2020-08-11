@@ -1,4 +1,0 @@
----
-- hosts: all:!ansible
-  roles:
-      - { role: processes_running }

@@ -1,5 +1,0 @@
----
-- name: del Linux users
-  user: name={{ item.name }} state=absent remove=yes
-  with_items:
-    - { name: 'focus' }  ##削除したいユーザーを記載

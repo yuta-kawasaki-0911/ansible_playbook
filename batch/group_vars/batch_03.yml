@@ -1,4 +1,0 @@
-mount_infos:
-  nas07:
-    - { src: "192.168.134.206:/nas/app", path: /nas07/app, opts: "rsize=8192,wsize=8192,hard,intr" }
-

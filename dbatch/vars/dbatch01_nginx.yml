@@ -1,7 +1,0 @@
-nginx_conf:
-  - { src: dbatch01/default.conf, dest: /etc/nginx/conf.d/, mode: '0644' }
-  - { src: dbatch01/nginx.conf, dest: /etc/nginx/, mode: '0644' }
-
-logrote:
-  - { src: dbatch01/logrotate_nginx, dest: /etc/logrotate.d/nginx, mode: '0644' }
-

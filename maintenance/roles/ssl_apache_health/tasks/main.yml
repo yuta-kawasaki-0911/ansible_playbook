@@ -1,4 +1,0 @@
----
-- name: move healthcheck  
-  shell: >
-    mv /usr/local/apache2/htdocs/health.html /usr/local/apache2/htdocs/health.html.bak

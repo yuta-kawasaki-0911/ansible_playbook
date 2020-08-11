@@ -1,6 +1,0 @@
----
-now_date: "{{ lookup('pipe','date +%Y%m%d') }}"
-bid_certificatedir: /usr/local/apache2/conf/bidding-dsp.ad-m.asia/
-data_certificatedir: /usr/local/apache2/conf/data-dsp.ad-m.asia/
-opt_certificatedir: /usr/local/apache2/conf/optout-dsp.ad-m.asia/
-

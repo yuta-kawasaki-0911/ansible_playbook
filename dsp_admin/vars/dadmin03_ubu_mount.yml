@@ -1,3 +1,0 @@
-mount_info:
-  - { src: "192.168.134.205:/dsp/backup", path: /nas/backup, opts: "rsize=8192,wsize=8192,hard,intr,noatime" }
-  - { src: "192.168.134.205:/dsp/production", path: /nas/dsp, opts: "rsize=8192,wsize=8192,hard,intr,noatime" }

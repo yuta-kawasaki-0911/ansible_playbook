@@ -1,3 +1,0 @@
-cron_info:
-  - { src: bkvs/makewhatis.cron, dest: /etc/cron.daily/, mode: "0755" }
-  - { src: bkvs/logrotate.d, dest: /etc/logrotate.d, mode: "0755" }

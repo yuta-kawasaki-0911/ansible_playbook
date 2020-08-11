@@ -1,4 +1,0 @@
----
-- hosts: dbs02
-  roles:
-      - { role: blackswancount }

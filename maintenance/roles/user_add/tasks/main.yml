@@ -1,5 +1,0 @@
----
-- name: add Linux users
-  user: name={{ item.name }} state=present password={{ item.password |password_hash('sha512') }}
-  with_items:
-    - { name: 'devops_cebu', password: '=L79Rsjdd' }  ##追加したいユーザーとパスワードを記入する

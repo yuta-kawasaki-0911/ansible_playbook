@@ -1,6 +1,0 @@
-init_config:
-
-instances:
-- name: java.process
-  search_string: ['java']
-  exact_match: False

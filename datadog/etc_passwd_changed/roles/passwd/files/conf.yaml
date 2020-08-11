@@ -1,8 +1,0 @@
-init_config:
-
-instances:
-
-- directory: "/etc"
-  name: "/etc/passwd"
-  filegauges: True
-  pattern: "passwd"

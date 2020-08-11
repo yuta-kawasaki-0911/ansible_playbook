@@ -1,4 +1,0 @@
-mount_info:
-  - { src: "192.168.134.205:/backup", path: /nas/backup, opts: "rsize=8192,wsize=8192,hard,intr" }
-  - { src: "192.168.134.205:/cvpath", path: /nas/cvpath, opts: "rsize=8192,wsize=8192,hard,intr" }
-  - { src: "192.168.134.205:/nas/app", path: /nas/app, opts: "rsize=8192,wsize=8192,hard,intr" }

@@ -1,6 +1,0 @@
----
-##
-- name: staging
-  shell: rsync -av 192.168.100.179:/etc/zabbix/zabbix_agentd.d/* /etc/zabbix/zabbix_agentd.d/.;
-         sed -i "s/^Server=.*/Server=192.168.100.240,192.168.100.108/g" /etc/zabbix/zabbix_agentd.conf;
-         sed -i "s/^ServerActive=.*/ServerActive=192.168.100.240,192.168.100.108/g" /etc/zabbix/zabbix_agentd.conf;

@@ -1,9 +1,0 @@
----
-- hosts: hmn
-  become: yes
-  vars:
-    hosts_file: hosts_20180906 #latest hosts file
-  roles:
-    - ../common_build/roles/common_cebu
-    - ../common_build/roles/java_cebu
-    - cluster_common

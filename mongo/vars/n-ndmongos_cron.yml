@@ -1,4 +1,0 @@
-cron_info:
-  - { src: ndmongos/cron.daily/makewhatis.cron, dest: /etc/cron.daily/, mode: '0755' }
-  - { src: ndmongos/cron.daily/mongodump, dest: /etc/cron.daily/, mode: '0755' }
-

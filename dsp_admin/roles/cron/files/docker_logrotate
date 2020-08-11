@@ -1,9 +1,0 @@
-/var/log/docker/3pas/*.log /var/log/docker/cro/*.log /var/log/docker/dmp/*.log /var/log/docker/dsp/*.log /var/log/docker/nginx/*.log /var/log/docker/supervisor/*.log /var/log/docker/supervisor/*/*.log {
-    weekly
-    missingok
-    notifempty
-    compress
-    delaycompress
-    copytruncate
-}
-

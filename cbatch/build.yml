@@ -1,8 +1,0 @@
----
-- hosts: add
-  become: yes
-  roles:
-    - ../common_build/roles/common
-    - ../common_build/roles/java
-    - ../common_build/roles/hadoop_client
-    - cbatch

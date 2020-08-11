@@ -1,9 +1,0 @@
----
-- hosts: all
-  become: yes
-  tasks:
-    - name: give hosts to cluster
-      copy: 
-        src: ../../admatrixDSP_infra_configfiles/hosts
-        dest: /etc/hosts
-        backup: yes

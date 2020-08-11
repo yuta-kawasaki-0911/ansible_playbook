@@ -1,8 +1,0 @@
----
-- hosts: databases
-  become: true
-  vars_prompt:
-    name: "LOGIN_PASS"
-    prompt: "Enter mysql password" 
-  roles:
-    - dbuser

@@ -1,5 +1,0 @@
-init_config:
-
-instances:
-- name: keepalived
-  search_string: ['keepalived']

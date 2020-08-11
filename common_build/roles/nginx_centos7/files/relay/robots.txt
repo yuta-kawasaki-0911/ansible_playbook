@@ -1,3 +1,0 @@
-User-Agent : *
-Disallow : /subscriber/
-Disallow : /dmp/

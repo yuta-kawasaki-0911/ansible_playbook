@@ -1,9 +1,0 @@
----
-- hosts: all
-  become: yes
-  tasks:
-    - name: check
-      shell: df -Th 
-      register: status
-    - name: debug
-      debug: var=status

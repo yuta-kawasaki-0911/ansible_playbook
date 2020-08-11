@@ -1,9 +1,0 @@
----
-- name: install sqoop
-  yum:
-    name: sqoop
-
-- name: jdbcドライバの配置
-  copy:
-    src: mysql-connector-java-5.1.21.jar
-    dest: /usr/lib/sqoop/lib/

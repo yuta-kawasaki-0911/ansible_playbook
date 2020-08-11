@@ -1,9 +1,0 @@
----
-- name: confファイルの準備
-  command: cp -r /etc/hadoop/conf.empty /etc/hadoop/conf.class
-
-- name: バージョンの切り替え
-  alternatives:
-    name: hadoop-conf
-    link: /etc/hadoop/conf
-    path: /etc/hadoop/conf.class
