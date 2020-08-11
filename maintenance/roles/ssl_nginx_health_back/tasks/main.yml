@@ -1,4 +1,0 @@
----
-- name: undo healthcheck file
-  shell: >
-    mv /usr/local/nginx/html/health.html.bak /usr/local/nginx/html/health.html

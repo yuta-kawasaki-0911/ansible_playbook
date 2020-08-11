@@ -1,9 +1,0 @@
----
-## 
-- name: insert visuo
-  lineinfile: 
-    dest=/etc/sudoers
-    line={{ item }}
-  with_items:
-    - 'devops_cebu ALL=(root) NOPASSWD: /etc/init.d/datadog-agent restart'
-    - 'dd-agent ALL=(root) NOPASSWD: /etc/init.d/datadog-agent restart'

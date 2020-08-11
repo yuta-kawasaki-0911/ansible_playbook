@@ -1,9 +1,0 @@
-/var/log/dracut.log {
-    missingok
-    notifempty
-    compress
-    delaycompress
-    copytruncate
-    size 1M
-    create 0600 root root
-}

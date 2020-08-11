@@ -1,8 +1,0 @@
-[production]
-relay[01:04]
-
-[add]
-#relay05
-
-[target]
-relay04

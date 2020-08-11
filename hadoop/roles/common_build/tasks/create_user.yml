@@ -1,4 +1,0 @@
----
-- name: 必要なユーザの作成
-  user: name=hadoop group=hadoop
-- user: name=dsp group=hadoop

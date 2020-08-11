@@ -1,8 +1,0 @@
----
-- name: copy admatrixDSP_infra_configfiles/hosts
-  copy: 
-    src: /home/ansible/admatrixDSP_infra_configfiles/{{ file }} 
-    dest: /etc/hosts 
-    mode: 0664 
-    backup: yes
-

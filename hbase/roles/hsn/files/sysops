@@ -1,2 +1,0 @@
-# For HDFS capacity check (daily task)
-%sysops ALL=(hdfs) NOPASSWD: /usr/bin/hdfs dfs -du *

@@ -1,6 +1,0 @@
-update_data_cer: data-dsp.ad-m.asia.cer.to20210331
-update_data_key: data-dsp.ad-m.asia.key.to20210331
-domain_ca_crt: JPRS_DVCA_G3_PEM.cer.to20210331
-data_cer_path: /usr/local/apache2/conf/data-dsp.ad-m.asia/cn_data-dsp.ad-m.asia.cer
-data_key_path: /usr/local/apache2/conf/data-dsp.ad-m.asia/data-dsp.ad-m.asia.key
-domain_ca_data_path: /usr/local/apache2/conf/data-dsp.ad-m.asia/JPRS_DVCA.cer

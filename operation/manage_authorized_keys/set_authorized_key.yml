@@ -1,5 +1,0 @@
----
-- hosts: iapi #ssh_keyファイルの中から該当のグループを記入
-  become: true
-  roles:
-    - copy_file

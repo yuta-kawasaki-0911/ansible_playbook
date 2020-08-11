@@ -1,6 +1,0 @@
-init_config:
-
-instances:
-- name: tomcat.bin
-  search_string: ['/usr/local/tomcat']
-  exact_match: False

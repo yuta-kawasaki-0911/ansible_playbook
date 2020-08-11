@@ -1,6 +1,0 @@
-update_bidding_crt: bidding-dsp.t-ad-m.asia.crt.to20210228
-update_bidding_key: bidding-dsp.t-ad-m.asia.key.to20210228
-update_bidding_cer: bidding-dsp.t-ad-m.asia.cer.to20210228
-bidding_crt_path: /usr/local/apache2/conf/ssl/bidding-dsp.t-ad-m.asia.crt
-bidding_key_path: /usr/local/apache2/conf/ssl/bidding-dsp.t-ad-m.asia.key
-bidding_cer_path: /usr/local/apache2/conf/ssl/bidding-dsp.t-ad-m.asia.cer

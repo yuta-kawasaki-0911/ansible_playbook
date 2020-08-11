@@ -1,3 +1,0 @@
----
-- name: unlock dd-agent
-  shell: passwd -u -f dd-agent

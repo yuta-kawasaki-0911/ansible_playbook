@@ -1,3 +1,0 @@
-nginx_conf:
-  - { src: dadmin-fi/admatrix.conf, dest: /etc/nginx/conf.d/, mode: '0644' }
-  - { src: dadmin-fi/tsunagu.conf, dest: /etc/nginx/conf.d/, mode: '0644' }

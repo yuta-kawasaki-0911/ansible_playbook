@@ -1,4 +1,0 @@
----
-- name: test
-  debug: echo "echo "ffffffff" > /sys/class/net/em2/queues/tx-0/xps_cpus" > /etc/rc.local"
-  when: lookup("file", /sys/class/net/em2/queues/tx-1/xps_cpus) | match("00000000")

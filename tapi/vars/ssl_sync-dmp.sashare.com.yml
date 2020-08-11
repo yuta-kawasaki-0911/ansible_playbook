@@ -1,4 +1,0 @@
-update_dmp_crt: cn_sync-dmp.sashare.com.cer.to20210820
-update_dmp_key: sync-dmp.sashare.com.key.to20210820
-dmp_crt_path: /etc/nginx/cn_sync-dmp.sashare.com.cer
-dmp_key_path: /etc/nginx/sync-dmp.sashare.com.key

@@ -1,2 +1,0 @@
-tomcat ALL=(root) NOPASSWD: /usr/bin/git *
-tomcat ALL=(root) NOPASSWD: /usr/bin/make docker-docs-generate

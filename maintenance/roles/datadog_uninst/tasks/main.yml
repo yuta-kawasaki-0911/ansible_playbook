@@ -1,3 +1,0 @@
----
-- name: uninstall datadog-agent
-  yum: name=datadog-agent state=absent 

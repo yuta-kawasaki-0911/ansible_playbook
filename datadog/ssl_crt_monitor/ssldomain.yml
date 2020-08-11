@@ -1,4 +1,0 @@
----
-- hosts: util
-  roles:
-      - { role: domainssl}

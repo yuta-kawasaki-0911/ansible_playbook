@@ -1,9 +1,0 @@
----
-- hosts: target
-  become: yes
-  vars:
-    LOGIN_PASS: 
-  vars_files:
-    - ./roles/mysql_app_user/files/dbs03/user_info_private.yml
-  roles:
-    - mysql_app_user

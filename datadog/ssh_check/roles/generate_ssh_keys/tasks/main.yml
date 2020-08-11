@@ -1,9 +1,0 @@
----
-- name: Create temporary ssh folder
-  file:
-    path: /tmp/ssh
-    state: directory
-
-- name: Generate SSH keys
-  command: ssh-keygen -b 2048 -t rsa -f /tmp/ssh/datadog_ssh_check_id_rsa -q -N ""
-...

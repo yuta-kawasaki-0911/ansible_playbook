@@ -1,2 +1,0 @@
-cron_info:
-  - { src: dkvs_logrotate.d, dest: /etc/logrotate.d, mode: "0755" }

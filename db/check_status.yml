@@ -1,9 +1,0 @@
----
-- hosts: all
-  become: yes
-  tasks:
-    - name: check the version
-      command: mysql --version
-      register: version
-    - name: display
-      debug: var=version.stdout

@@ -1,2 +1,0 @@
-Defaults:tomcat !requiretty
-tomcat  ALL=(ALL)       ALL

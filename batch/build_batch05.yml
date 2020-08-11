@@ -1,9 +1,0 @@
----
-- hosts: add
-  become: true
-  roles:
-    - ../common_build/roles/common
-    - ../common_build/roles/java
-    - activemq
-    - ../common_build/roles/hadoop_client
-    - ../common_build/roles/mount

@@ -1,4 +1,0 @@
-update_crt: t-admatrix.jp.crt.to20191118
-update_key: t-admatrix.jp.nopass.key
-crt_path: /usr/local/apache2/conf/t-admatrix.jp.crt
-key_path: /usr/local/apache2/conf/t-admatrix.jp.nopass.key

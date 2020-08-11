@@ -1,5 +1,0 @@
-init_config:
-
-instances:
-  - name: cert
-    ca_certs: /etc/nginx/conf.d/admatrix.jp.crt

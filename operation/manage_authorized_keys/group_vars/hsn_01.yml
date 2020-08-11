@@ -1,5 +1,0 @@
-user: sysops
-public_keys:
-  - '{{ tomcat_batch01 }}'
-  - '{{ tomcat_batch03 }}'
-

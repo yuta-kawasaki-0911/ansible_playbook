@@ -1,6 +1,0 @@
-/var/log/yum.log {
-    missingok
-    notifempty
-    yearly
-    create 0600 root root
-}

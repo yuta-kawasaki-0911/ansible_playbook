@@ -1,6 +1,0 @@
-init_config:
-
-instances:
-- name: rsyslogd
-  search_string: ["rsyslogd"]
-  exact_match: False

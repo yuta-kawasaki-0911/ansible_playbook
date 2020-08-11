@@ -1,4 +1,0 @@
-jenkins ALL=(ALL) NOPASSWD:ALL
-christian.pino ALL=(ALL) NOPASSWD:ALL
-ismael.cristal ALL=(ALL) NOPASSWD:ALL
-michael.bayucot ALL=(ALL) NOPASSWD:ALL

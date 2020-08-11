@@ -1,9 +1,0 @@
----
-- hosts: add
-  become: yes
-  vars_files:
-    - vars/dbatch01_nginx.yml
-  roles:
-    - ../common_build/roles/common
-    - nginx
-    - ../common_build/roles/mount

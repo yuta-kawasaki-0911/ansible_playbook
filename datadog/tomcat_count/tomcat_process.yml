@@ -1,4 +1,0 @@
----
-- hosts: bidresult:capi:relay:tapi:dapi:api:iapi
-  roles:
-      - { role: tomcat }

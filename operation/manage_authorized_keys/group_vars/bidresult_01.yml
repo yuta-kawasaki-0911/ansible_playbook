@@ -1,7 +1,0 @@
-user: tomcat
-authorized_keys_file: bidresult01_authorized_keys
-
-#user: tomcat
-#public_keys:
-#  - '{{ tomcat_batch01 }}'
-

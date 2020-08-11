@@ -1,8 +1,0 @@
----
-- hosts: sbatch
-  become: true
-  tasks:
-  - name: copy
-    copy:
-      src: monitor_dsp/
-      dest: /etc/datadog-agent/

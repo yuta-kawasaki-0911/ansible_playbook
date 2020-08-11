@@ -1,8 +1,0 @@
----
-- name: create user of 'forit'
-  user:
-    name: forit
-    password: "{{ secret.password|password_hash('sha512') }}"
-    group: sudo
-    shell: /bin/bash
-

@@ -1,6 +1,0 @@
-init_config:
-
-instances:
-    - host: localhost
-      port: 2222
-

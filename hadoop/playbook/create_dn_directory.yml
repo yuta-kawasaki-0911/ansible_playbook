@@ -1,5 +1,0 @@
----
-- hosts: target
-  become: yes
-  roles:
-    - ../roles/create_dn_directory

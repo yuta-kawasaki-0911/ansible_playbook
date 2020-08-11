@@ -1,2 +1,0 @@
-mount_info:
-  - { src: "192.168.134.206:/nas/backup", path: /nas/backup, opts: "rsize=8192,wsize=8192,hard,intr" }

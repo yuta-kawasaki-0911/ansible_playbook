@@ -1,4 +1,0 @@
-update_crt: cn_sync-dsp.t-ad-m.asia.cer.to20210802
-update_key: sync-dsp.t-ad-m.asia.key.to20210802
-crt_path: /etc/nginx/conf.d/sync-dsp.t-ad-m.asia.cer
-key_path: /etc/nginx/conf.d/sync-dsp.t-ad-m.asia.key
