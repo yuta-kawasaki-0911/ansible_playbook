@@ -1,0 +1,40 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+    - name: os version
+      command: cat /etc/redhat-release
+      register: os_version
+    - name: cpu model
+      shell: grep "model name" /proc/cpuinfo | head -1
+      register: cpu_model
+    - name: cpu physical core
+      shell: grep "physical id" /proc/cpuinfo | sort | uniq | wc -l
+      register: cpu_phy_core
+    - name: cpu core
+      shell: grep "cores" /proc/cpuinfo | head -1 | awk '{print $4}'
+      register: cpu_core
+    - name: cpu thread
+      shell: grep "processor" /proc/cpuinfo | wc -l
+      register: cpu_thread
+    - name: memory
+      shell: cat /proc/meminfo | head -1
+      register: mem_size
+    - name: hdd
+      shell: lsblk
+      register: hdd_info
+
+    - name: debug os version
+      debug: var=os_version
+    - name: debug cpu model
+      debug: var=cpu_model
+    - name: debug cpu phy core
+      debug: var=cpu_phy_core
+    - name: debug cpu core
+      debug: var=cpu_core
+    - name: debug cpu thread
+      debug: var=cpu_thread
+    - name: debug memory size
+      debug: var=mem_size
+    - name: debug hdd
+      debug: var=hdd_info

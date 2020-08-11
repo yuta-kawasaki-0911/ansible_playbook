@@ -1,0 +1,4 @@
+bidding_cer: bidding-dsp.ad-m.asia.cer.20180323
+bidding_key: bidding-dsp.ad-m.asia.key.20180323
+bidding_cer_path: /usr/local/apache2/conf/bidding-dsp.ad-m.asia/bidding-dsp.ad-m.asia.csr
+bidding_key_path: /usr/local/apache2/conf/bidding-dsp.ad-m.asia/bidding-dsp.ad-m.asia.key

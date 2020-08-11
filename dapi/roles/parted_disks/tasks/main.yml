@@ -1,0 +1,9 @@
+---
+- name: parted
+  parted:
+    label: gpt
+    device: /dev/sdb
+    number: 1
+    flags: [ ext4 ]
+    state: present
+

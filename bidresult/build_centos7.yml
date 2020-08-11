@@ -1,0 +1,22 @@
+---
+- hosts: add
+  become: yes
+  vars_files:
+    - vars/nginx.yml
+    - vars/mount.yml
+    - vars/ssl_bidresult-dsp.ad-m.asia.yml
+  roles:
+    - ../common_build/roles/common_centos7
+    - ../common_build/roles/java
+    - ../common_build/roles/nginx_centos7
+    - ssl_bidresult-dsp.ad-m.asia
+    - bidresult
+    - ../common_build/roles/mount_centos7
+    - tomcat
+  tasks:
+    - name: ヘルスチェック ファイルのディレクトリを修正
+      become: yes
+      file:
+        path: /usr/local/nginx/html/health.html_bk
+        owner: tomcat
+        group: tomcat

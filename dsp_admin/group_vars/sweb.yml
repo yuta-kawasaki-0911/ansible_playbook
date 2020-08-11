@@ -1,0 +1,4 @@
+nginx_conf:
+    - { src: ./roles/nginx/files/sweb/default.conf, dest: /etc/nginx/conf.d/, mode: '0644' }
+    - { src: ./roles/nginx/files/sweb/forit.conf, dest: /etc/nginx/conf.d/, mode: '0644' }
+    - { src: ./roles/nginx/files/sweb/nginx.conf, dest: /etc/nginx/, mode: '0644' }

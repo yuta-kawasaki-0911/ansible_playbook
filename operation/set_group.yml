@@ -1,0 +1,16 @@
+---
+- hosts: all   # インベントリから対象グループを記入
+  become: yes
+  vars:
+    group_info: '{{ sysops }}' # 操作対象のユーザグループを記入
+  tasks:
+    - name: グループが無ければ作る
+      group:
+        name: '{{ group_info.gname }}'
+    - name: setting user
+      user:
+        name: '{{ item.user }}'
+        group: '{{ group_info.gname }}'
+        state: present
+      with_items: '{{ group_info.info }}'
+  

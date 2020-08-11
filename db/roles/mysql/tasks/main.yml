@@ -1,0 +1,21 @@
+---
+- name: copy mysql.tar
+  become: yes
+  unarchive:
+    src: mysql5.6.tar
+    dest: /root
+
+- name: install mysql's package
+  yum:
+    name: '{{ item }}'
+    state: present
+  with_items:
+    - MySQL-server-5.6.25-1.el7.x86_64.rpm
+    - MySQL-client-5.6.25-1.el7.x86_64.rpm
+    - MySQL-shared-compat-5.6.25-1.el7.x86_64.rpm
+
+- name: copy .my.cnf
+  copy:
+    src: '{{ item.src }}'
+    dest: '{{ item.dest }}'
+  with_items: '{{ mycnf }}'

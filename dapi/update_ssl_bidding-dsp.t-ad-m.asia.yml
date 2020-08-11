@@ -1,0 +1,14 @@
+---
+- hosts: target
+  become: yes
+  vars_files:
+    - vars/ssl_bidding-dsp.t-ad-m.asia.yml
+  roles:
+    - { role: ssl_bidding-dsp.t-ad-m.asia, tags: setting }
+
+- hosts: target
+  tasks:
+    - name: apache再起動
+      become: yes
+      command: /etc/init.d/httpd restart
+      tags: add

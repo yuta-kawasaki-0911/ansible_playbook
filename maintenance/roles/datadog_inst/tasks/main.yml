@@ -1,0 +1,4 @@
+---
+- name: datadog
+  script: >
+    /ansible_o/maintenance/roles/datadog_inst/files/install_agent.sh

@@ -1,0 +1,4 @@
+optout_cer: optout-dsp.ad-m.asia.cer.20180323
+optout_key: optout-dsp.ad-m.asia.key.20180323
+optout_cer_path: /usr/local/apache2/conf/optout-dsp.ad-m.asia/cn_optout-dsp.ad-m.asia.cer
+optout_key_path: /usr/local/apache2/conf/optout-dsp.ad-m.asia/optout-dsp.ad-m.asia.key

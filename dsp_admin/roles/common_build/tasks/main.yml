@@ -1,0 +1,194 @@
+---
+- name: create buckup file
+  shell: >
+    iptables-save > /home/ansible/iptables.sh.`date +%Y%m%d`;
+
+- name: iptables-persistentのインストール
+  apt:
+    name: iptables-persistent
+    update_cache: yes
+
+# sshの設定
+- name: Comment out rules that already exist
+  replace:
+    dest: /etc/ssh/sshd_config
+    regexp: '^PermitRootLogin prohibit-password'
+    replace: 'PermitRootLogin yes'
+    backup: yes
+
+- name: setting ssh
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    line: 'PermitRootLogin yes'
+    insertbefore: '^#PermitRootLogin '
+
+- name: restart sshd
+  command: /etc/init.d/ssh restart
+
+#パッケージをインストール
+- name: install system commands
+  apt:
+    name: '{{ item }}'
+    update_cache: yes
+  with_items:
+    - libssh2-1
+    - ntpdate
+    - tree
+    - sysstat
+    - dmidecode
+    - hdparm
+    - nmap
+    - mpt-status
+    - jwhois
+    - lzop
+    - pciutils
+    - nfs-client
+    - lm-sensors
+    - tcpdump
+    - wireshark
+    - alien
+    - sysv-rc-conf
+
+- name: update mpt-status
+  command: modprobe mptctl
+
+#hostsの設定
+- name: setting hosts file
+  copy:
+    src: ../../../../admatrixDSP_infra_configfiles/hosts
+    dest: /etc
+
+#SELinux周りの設定
+- name: Stop the AppArmor
+  service:
+    name: apparmor
+    state: stopped
+
+- name: Purge AppArmor
+  apt:
+    name: apparmor
+    state: absent
+
+- name: Update
+  apt:
+    update_cache: yes
+
+- name: reboot
+  shell: "sleep 2 && reboot"
+  async: 1
+  poll: 0
+
+- name: waiting for reboot
+  local_action: wait_for host={{ inventory_hostname }} port=22 delay=30
+
+- name: install the python-selinux
+  apt:
+    name: '{{ item }}'
+    update_cache: yes
+  with_items:
+    - selinux
+    - python-selinux
+
+- name: disable selinux
+  selinux:
+    state: disabled
+
+- name: reboot after install selinux
+  shell: "sleep 2 && reboot"
+  async: 1
+  poll: 0
+
+- name: waiting for reboot after install selinux
+  local_action: wait_for host={{ inventory_hostname }} port=22 delay=30
+
+#カーネルパラメータの設定
+- name: confirm existence of file
+  stat: path=/etc/modprobe.d/nf_conntrack.conf
+  register: fm
+
+- name: if not, create a file
+  file:
+    path: /etc/modprobe.d/nf_conntrack.conf
+    state: touch
+  when: not fm.stat.exists
+  tags:
+    - not_dbatch01
+
+- name: nf_conntrack.confの設定を追記
+  lineinfile:
+    dest: /etc/modprobe.d/nf_conntrack.conf
+    line: "options nf_conntrack hashsize=37500"
+  tags:
+    - not_dbatch01
+
+# sysctl.cnfの設定(サーバによって書いてあることが違うかもしれない)
+- name: edit sysctl.conf
+  lineinfile:
+    dest=/etc/sysctl.conf
+    line={{ item }}
+  with_items:
+    - '#add FullSpeed'
+    - 'net.ipv6.conf.all.disable_ipv6 = 1'
+    - 'net.ipv6.conf.default.disable_ipv6 = 1'
+    - 'net.ipv6.conf.lo.disable_ipv6 = 1'
+    - 'vm.swappiness = 0'
+    - 'net.ipv4.tcp_fin_timeout=5'
+    - 'net.ipv4.tcp_max_tw_buckets=900000'
+    - 'net.ipv4.tcp_max_syn_backlog = 60000'
+
+    - '#for iptables against Lost packet'
+    - 'net.netfilter.nf_conntrack_max  = 300000'
+    - 'net.nf_conntrack_max = 300000'
+    - 'net.core.somaxconn = 1024'
+    - 'net.core.netdev_max_backlog = 30720'
+    - 'net.ipv4.ip_local_port_range = 32768 65535'
+    - 'net.ipv4.tcp_tw_reuse = 1'
+    - 'net.core.rmem_max = 16777216'
+    - 'net.core.wmem_max = 16777216'
+    - 'net.ipv4.tcp_rmem = 4096 87380 16777216'
+    - 'net.ipv4.tcp_wmem = 4096 87380 16777216'
+
+- name: カーネルモジュールをロードする
+  modprobe:
+    name: '{{ item }}'
+    state: present
+  with_items:
+    - ip_conntrack
+
+- name: 反映(出力されるがエラーではないので止まらないようにする)
+  command: sysctl -p
+  ignore_errors: yes
+
+#NTPの設定
+- name: set ntp cron
+  stat: path=/etc/cron.hourly/ntpdcron
+  register: ntp
+
+- name: touch file
+  file:
+    path: /etc/cron.hourly/ntpdcron
+    state: touch
+    mode: 0755
+  when: not ntp.stat.exists
+
+- name: insert text (touch)
+  lineinfile:
+    dest: /etc/cron.hourly/ntpdcron
+    line: '{{ item }}'
+  with_items:
+    - '#!/bin/bash'
+    - '/usr/sbin/ntpdate -u ns1.freebit.net > /dev/null 2>&1'
+
+- name: change permission
+  file:
+    path: '{{ item }}'
+    mode: 0755
+  with_items:
+    - '/etc/cron.hourly/ntpdcron'
+
+- name: ntpデーモンを止める。(二つ動いているとどちらかが失敗するため)
+  service:
+    name: ntp
+    state: stopped
+    enabled: no
+  ignore_errors: yes

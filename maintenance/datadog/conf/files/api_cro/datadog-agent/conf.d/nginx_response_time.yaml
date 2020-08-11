@@ -1,0 +1,15 @@
+init_config:
+  metric_request_time: fs.nginx.request_time.seconds
+  metric_upstream_response_time: fs.nginx.upstream_response_time.seconds
+  groups: capi
+
+instances:
+  - name: cro_http
+    server_name: eventd-cro.admatrix.jp
+    logfile: cro_http.log
+    protocol: http
+
+  - name: cro_https
+    server_name: eventd-cro.admatrix.jp
+    logfile: cro_https.log
+    protocol: https

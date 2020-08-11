@@ -1,0 +1,8 @@
+---
+- hosts: cm
+  become: yes
+  roles:
+    - ../common_build/roles/common
+    - ../common_build/roles/java
+    - ../common_build/roles/mysql_5.7
+    - mysql_connector_java

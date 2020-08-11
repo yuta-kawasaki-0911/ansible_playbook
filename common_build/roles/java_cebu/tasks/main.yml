@@ -1,0 +1,18 @@
+---
+- name: copy the rpm file
+  copy:
+    src: jdk-8u181-linux-x64.rpm
+    dest: /tmp/
+
+- name: install jdk
+  yum: name={{ item }}
+  with_items:
+  - /tmp/jdk-8u181-linux-x64.rpm
+
+- name: set jdk path
+  lineinfile:
+    dest=/etc/profile
+    insertbefore='export PATH USER LOGNAME MAIL HOSTNAME HISTSIZE HISTCONTROL'
+    line={{ item }}
+  with_items:
+    - 'PATH=$PATH:/usr/java/default/bin:/sbin'

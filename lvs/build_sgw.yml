@@ -1,0 +1,7 @@
+---
+- hosts: add
+  become: yes
+  roles:
+    - ../common_build/roles/common
+    - lvs
+    - keepalived

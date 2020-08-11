@@ -1,0 +1,39 @@
+---
+- hosts: n-primary
+  become: yes
+  vars:
+    vrid: 180
+    global_vip: 192.168.199.83
+    interface: em2
+  roles:
+    - keepalived #インストールと設定ファイルのコピー
+  tags: setting
+
+- hosts: n-secondary
+  vars:
+    vrid: 180
+    global_vip: 192.168.199.83
+    interface: em2
+  become: yes
+  roles:
+    - keepalived
+  tags: setting
+
+- hosts: n-primary
+  become: yes
+  tasks: 
+    - name: start keepalived
+      service:
+        name: keepalived
+        enabled: yes
+  tags: start
+
+- hosts: n-secondary
+  become: yes
+  tasks:
+    - name: start keepalived
+      service:
+        name: keepalived
+        enabled: yes
+  tags: start
+

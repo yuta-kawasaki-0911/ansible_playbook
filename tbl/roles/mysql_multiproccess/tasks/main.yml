@@ -1,0 +1,79 @@
+---
+- name: stop mysql
+  service:
+    name: mysqld
+    state: stopped
+
+- name: copy config file
+  copy:
+    src: '{{ item }}'
+    dest: /etc/
+    mode: '0644'
+  with_items:
+    - my.cnf
+    - my1.cnf
+    - my3.cnf
+    - myf.cnf
+
+- name: create parent data dir
+  file:
+    path: /ssd/{{ item }}
+    state: directory
+    mode: '0755'
+  with_items:
+    - 'dbs2_slave'
+    - 'dbs1_slave'
+    - 'dbs3_slave'
+    - 'federated_server'
+
+- name: copy data dir
+  command: cp -ar /var/lib/mysql /ssd/{{ item }}/data
+  with_items:
+    - 'dbs2_slave'
+    - 'dbs1_slave'
+    - 'dbs3_slave'
+    - 'federated_server'
+
+- name: create socket dir
+  file:
+    path: /var/lib/mysql{{ item }}
+    state: directory
+    owner: mysql
+    group: mysql
+    mode: '0755'
+  with_items:
+    - '1'
+    - '3'
+    - 'f'
+
+- name: create pid file dir
+  file:
+    path: /var/run/mysqld{{ item }}
+    state: directory
+    owner: mysql
+    group: mysql
+    mode: '0755'
+  with_items:
+    - '1'
+    - '3'
+    - 'f'
+
+- name: create log files
+  file:
+    path: /var/log/mysqld{{ item }}.log
+    state: touch
+    owner: mysql
+    group: mysql
+    mode: '0644'
+  with_items:
+    - '1'
+    - '3'
+    - 'f'
+
+- name: start mysql processes
+  shell: "mysqld_safe --defaults-file=/etc/{{ item }} &"
+  with_items:
+    - my.cnf
+    - my1.cnf
+    - my3.cnf
+    - myf.cnf

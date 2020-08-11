@@ -1,0 +1,20 @@
+---
+- name: Check status of fetched ssh key file
+  local_action: stat path=/tmp/ssh/fetched_datadog_ssh_check_id_rsa.pub
+  register: old_ssh_key
+
+- name: Remove existing authorized key
+  become: true
+  authorized_key:
+    user: dd-agent
+    state: absent
+    key: "{{ lookup('file', '/tmp/ssh/fetched_datadog_ssh_check_id_rsa.pub') }}"
+  when: old_ssh_key.stat.exists == True
+
+- name: Set new authorized key from file
+  become: true
+  authorized_key:
+    user: dd-agent
+    state: present
+    key: "{{ lookup('file', '/tmp/ssh/datadog_ssh_check_id_rsa.pub') }}"
+...

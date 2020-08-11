@@ -1,0 +1,9 @@
+[hmn]
+172.20.1.[221:223]  ansible_user=ansible
+
+[cm]
+172.20.1.220  ansible_user=ansible
+
+[hsn]
+172.20.1.[224:228] ansible_user=ansible
+

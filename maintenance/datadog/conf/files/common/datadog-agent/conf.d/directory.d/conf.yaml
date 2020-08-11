@@ -1,0 +1,14 @@
+init_config:
+
+instances:
+
+- directory: "/etc"
+  name: "/etc/passwd"
+  filegauges: True
+  pattern: "passwd"
+# BEGIN /etc/group changed monitor
+- directory: "/etc"
+  name: "/etc/group"
+  filegauges: True
+  pattern: "group"
+# END /etc/group changed monitor

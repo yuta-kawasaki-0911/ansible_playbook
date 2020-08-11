@@ -1,0 +1,6 @@
+---
+##
+- name: 3pas
+  shell: rsync -av 192.168.134.179:/etc/zabbix/zabbix_agentd.d/* /etc/zabbix/zabbix_agentd.d/.;
+         sed -i "s/^Server=.*/Server=192.168.134.240,192.168.134.238/g" /etc/zabbix/zabbix_agentd.conf;
+         sed -i "s/^ServerActive=.*/ServerActive=192.168.134.240,192.168.134.238/g" /etc/zabbix/zabbix_agentd.conf;

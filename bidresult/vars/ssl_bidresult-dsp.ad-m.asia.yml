@@ -1,0 +1,4 @@
+update_crt: bidresult-dsp.ad-m.asia.crt.to20210425
+update_key: bidresult-dsp.ad-m.asia.key.to20210425
+crt_path: /etc/nginx/conf.d/bidresult-dsp.ad-m.asia.crt
+key_path: /etc/nginx/conf.d/bidresult-dsp.ad-m.asia.key

@@ -1,0 +1,71 @@
+---
+- name: Fetch old ssh public key
+  become: true
+  fetch:
+    src: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa.pub
+    dest: /tmp/ssh/fetched_datadog_ssh_check_id_rsa.pub
+    flat: yes
+
+- name: Copy .yaml
+  copy:
+    src: conf.yaml
+    dest: /etc/datadog-agent/conf.d/ssh_check.d/
+  become: true
+
+- name: Register ssh_folder stat
+  stat:
+    path: /opt/datadog-agent/.ssh
+  register: ssh_folder
+
+- name: Create ssh_folder if not exist
+  become: true
+  file:
+    path: /opt/datadog-agent/.ssh
+    state: directory
+  when: ssh_folder.stat.exists == False
+
+- name: Copy ssh private key
+  copy:
+    src: /tmp/ssh/datadog_ssh_check_id_rsa
+    dest: /opt/datadog-agent/.ssh
+  become: true
+
+- name: Copy ssh public key
+  copy:
+    src: /tmp/ssh/datadog_ssh_check_id_rsa.pub
+    dest: /opt/datadog-agent/.ssh
+  become: true
+
+- become: true
+  file:
+    path: /etc/datadog-agent/conf.d/ssh_check.d/conf.yaml
+    owner: dd-agent
+    group: dd-agent
+
+- become: true
+  file:
+    path: /opt/datadog-agent/.ssh
+    owner: dd-agent
+    mode: 0700
+
+- become: true
+  file:
+    path: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+    owner: dd-agent
+    group: dd-agent
+    mode: 0600
+
+- become: true
+  file:
+    path: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa.pub
+    owner: dd-agent
+    group: dd-agent
+    mode: 0600
+
+- name: Restart datadog-agent
+  become: true
+  service:
+    name: datadog-agent
+    state: restarted
+    enabled: yes
+...

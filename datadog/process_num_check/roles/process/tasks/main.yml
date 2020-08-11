@@ -1,0 +1,42 @@
+---
+- name: Register process.yaml stat
+  stat:
+    path: /etc/datadog-agent/conf.d/process.yaml
+  register: process_yaml
+
+- name: Check if All instance is in process.yaml
+  become: yes
+  shell: "grep '^- name: All' /etc/datadog-agent/conf.d/process.yaml"
+  register: all_instance
+  ignore_errors: true
+  when: process_yaml.stat.exists == True
+
+- name: Append All instance if process.yaml exists
+  become: yes
+  blockinfile:
+    path: /etc/datadog-agent/conf.d/process.yaml
+    block: |
+      - name: All
+        search_string: ['All']
+    marker: "# {mark} Too many processes monitor"
+  when: process_yaml.stat.exists == True and all_instance.stdout == ''
+
+- name: Copy process.yaml if it does not exist yet
+  copy:
+    src: process.yaml
+    dest: /etc/datadog-agent/conf.d/.
+  when: process_yaml.stat.exists == False
+  become: true
+
+- become: yes
+  file:
+    path: /etc/datadog-agent/conf.d/process.yaml
+    owner: dd-agent
+    group: dd-agent
+
+- name: restart datadog-agent
+  become: true
+  service:
+    name: datadog-agent
+    state: restarted
+    enabled: yes

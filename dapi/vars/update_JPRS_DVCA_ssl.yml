@@ -1,0 +1,4 @@
+domain_ca_crt: JPRS_DVCA.cer.20180323
+domain_ca_bidding_path: /usr/local/apache2/conf/bidding-dsp.ad-m.asia/JPRS_DVCA.cer
+domain_ca_data_path: /usr/local/apache2/conf/data-dsp.ad-m.asia/JPRS_DVCA.cer
+domain_ca_optout_path: /usr/local/apache2/conf/optout-dsp.ad-m.asia/JPRS_DVCA.cer

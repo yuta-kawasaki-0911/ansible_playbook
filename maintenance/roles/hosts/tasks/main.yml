@@ -1,0 +1,6 @@
+---
+##hostsファイル
+- name: copy
+  copy: >
+    src=hosts
+    dest=/etc/

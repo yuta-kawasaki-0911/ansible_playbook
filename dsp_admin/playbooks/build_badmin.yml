@@ -1,0 +1,9 @@
+---
+- hosts: add
+  become: yes
+  vars_files: 
+    - ../vars/badmin01_mount.yml  #読み込ませるサーバの設定ファイルを追記する
+  roles:
+    - ../../common_build/roles/mount
+    - badmin
+

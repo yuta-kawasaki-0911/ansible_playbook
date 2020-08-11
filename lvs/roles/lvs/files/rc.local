@@ -1,0 +1,72 @@
+#!/bin/sh
+#
+# This script will be executed *after* all the other init scripts.
+# You can put your own initialization stuff in here if you don't
+# want to do the full Sys V style init stuff.
+
+touch /var/lock/subsys/local
+
+ethtool -K em1 rx off
+ethtool -K em1 tx off
+ethtool -K em1 tso off
+ethtool -K em1 gro off
+ethtool -K em2 rx off
+ethtool -K em2 tx off
+ethtool -K em2 tso off
+ethtool -K em2 gro off
+
+echo "ffffffff" > /sys/class/net/em1/queues/tx-0/xps_cpus
+echo "ffffffff" > /sys/class/net/em1/queues/tx-1/xps_cpus
+echo "ffffffff" > /sys/class/net/em1/queues/tx-2/xps_cpus
+echo "ffffffff" > /sys/class/net/em1/queues/tx-3/xps_cpus
+echo "ffffffff" > /sys/class/net/em1/queues/tx-4/xps_cpus
+echo "ffffffff" > /sys/class/net/em1/queues/tx-5/xps_cpus
+echo "ffffffff" > /sys/class/net/em1/queues/tx-6/xps_cpus
+echo "ffffffff" > /sys/class/net/em1/queues/tx-7/xps_cpus
+
+echo "ffffffff" > /sys/class/net/em1/queues/rx-0/rps_cpus
+echo "ffffffff" > /sys/class/net/em1/queues/rx-1/rps_cpus
+echo "ffffffff" > /sys/class/net/em1/queues/rx-2/rps_cpus
+echo "ffffffff" > /sys/class/net/em1/queues/rx-3/rps_cpus
+echo "ffffffff" > /sys/class/net/em1/queues/rx-4/rps_cpus
+echo "ffffffff" > /sys/class/net/em1/queues/rx-5/rps_cpus
+echo "ffffffff" > /sys/class/net/em1/queues/rx-6/rps_cpus
+echo "ffffffff" > /sys/class/net/em1/queues/rx-7/rps_cpus
+
+echo 4096 > /sys/class/net/em1/queues/rx-0/rps_flow_cnt
+echo 4096 > /sys/class/net/em1/queues/rx-1/rps_flow_cnt
+echo 4096 > /sys/class/net/em1/queues/rx-2/rps_flow_cnt
+echo 4096 > /sys/class/net/em1/queues/rx-3/rps_flow_cnt
+echo 4096 > /sys/class/net/em1/queues/rx-4/rps_flow_cnt
+echo 4096 > /sys/class/net/em1/queues/rx-5/rps_flow_cnt
+echo 4096 > /sys/class/net/em1/queues/rx-6/rps_flow_cnt
+echo 4096 > /sys/class/net/em1/queues/rx-7/rps_flow_cnt
+
+echo "ffffffff" > /sys/class/net/em2/queues/tx-0/xps_cpus
+echo "ffffffff" > /sys/class/net/em2/queues/tx-1/xps_cpus
+echo "ffffffff" > /sys/class/net/em2/queues/tx-2/xps_cpus
+echo "ffffffff" > /sys/class/net/em2/queues/tx-3/xps_cpus
+echo "ffffffff" > /sys/class/net/em2/queues/tx-4/xps_cpus
+echo "ffffffff" > /sys/class/net/em2/queues/tx-5/xps_cpus
+echo "ffffffff" > /sys/class/net/em2/queues/tx-6/xps_cpus
+echo "ffffffff" > /sys/class/net/em2/queues/tx-7/xps_cpus
+
+echo "ffffffff" > /sys/class/net/em2/queues/rx-0/rps_cpus
+echo "ffffffff" > /sys/class/net/em2/queues/rx-1/rps_cpus
+echo "ffffffff" > /sys/class/net/em2/queues/rx-2/rps_cpus
+echo "ffffffff" > /sys/class/net/em2/queues/rx-3/rps_cpus
+echo "ffffffff" > /sys/class/net/em2/queues/rx-4/rps_cpus
+echo "ffffffff" > /sys/class/net/em2/queues/rx-5/rps_cpus
+echo "ffffffff" > /sys/class/net/em2/queues/rx-6/rps_cpus
+echo "ffffffff" > /sys/class/net/em2/queues/rx-7/rps_cpus
+
+echo 4096 > /sys/class/net/em2/queues/rx-0/rps_flow_cnt
+echo 4096 > /sys/class/net/em2/queues/rx-1/rps_flow_cnt
+echo 4096 > /sys/class/net/em2/queues/rx-2/rps_flow_cnt
+echo 4096 > /sys/class/net/em2/queues/rx-3/rps_flow_cnt
+echo 4096 > /sys/class/net/em2/queues/rx-4/rps_flow_cnt
+echo 4096 > /sys/class/net/em2/queues/rx-5/rps_flow_cnt
+echo 4096 > /sys/class/net/em2/queues/rx-6/rps_flow_cnt
+echo 4096 > /sys/class/net/em2/queues/rx-7/rps_flow_cnt
+
+echo 32768 > /proc/sys/net/core/rps_sock_flow_entries

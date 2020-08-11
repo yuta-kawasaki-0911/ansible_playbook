@@ -1,0 +1,7 @@
+---
+- hosts: batch_03
+  vars:
+    mount_info: '{{ mount_infos.nas07 }}'
+  roles:
+    - ../common_build/roles/mount
+

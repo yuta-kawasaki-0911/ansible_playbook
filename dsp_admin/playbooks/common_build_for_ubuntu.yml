@@ -1,0 +1,9 @@
+---
+- hosts: add
+  become: yes
+  vars_files: 
+    - ../vars/dbatch01_nginx.yml  #読み込ませるサーバの設定ファイルを追記する
+  roles:
+    - ../roles/common_build
+    - ../roles/java
+    - ../roles/nginx

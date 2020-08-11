@@ -1,0 +1,1143 @@
+init_config:
+ 
+instances:
+    - host: api01
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: api02
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: api03
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: api04
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: api05
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: api06
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: api07
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: api08
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: batch05
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: batch01
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: batch03
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: bidresult01
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: bidresult02
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: bidresult03
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: bkvs01
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: bkvs02
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: bkvs03
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: bkvs04
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: bkvs05
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: bkvs06
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: cal01
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: cal02
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: cal03
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: capi01
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: capi02
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: cbatch01
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: cbatch02
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: ckvs01
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: ckvs02
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: ckvs03
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: ckvs04
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: dadmin01
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: dadmin02s
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: dadmin02
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: dadmin03
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: dapi01
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: dapi02
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: dapi03
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: dapi04
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: dapi05
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: dapi06
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: dapi07
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: dapi08
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: dapi09
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: dapi10
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: dapi11
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: dapi12
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: dapi13
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: dapi14
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: dapi15
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: dapi16
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: dapi17
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: dapi18
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: dapi19
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: dapi20
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: dapi21
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: dapi22
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: dapi23
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: dapi24
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: dapi25
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: dapi26
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: dash01
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: dbatch01
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: dbatch02
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: dbatch03
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: dbm01
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: dbm02
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: dbm03
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: dbm04
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: dbfm01
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: dbs01
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: dbs02
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: dbs03
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: dbs04
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: dkvs01
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: dkvs02
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: dkvs03
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: dkvs04
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: dkvs05
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: dkvs06
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: dkvsm01
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: dkvsm02
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: dn01
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: dn02
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: dn03
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: dn04
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: dn05
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: dn06
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: dn07
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: dn08
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: dn09
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: dn10
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: dn11
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: dn12
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: dn13
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: dn14
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: dn15
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: dn16
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: dn17
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: dn18
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: dn19
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: dn20
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: dn21
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: dn22
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: dn23
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: dn24
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: dn25
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: dn26
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: dn27
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: dn28
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: dn29
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: dn30
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: dn31
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: dn32
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: dn33
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: dn34
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: dn35
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: doc01
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: hsn01
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: hsn02
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: hsn03
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: hsn04
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: hsn05
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: hsn06
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: hsn07
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: hsn08
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: hsn09
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: hsn10
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: hsn11
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: iapi01
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: iapi02
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: iapi03
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: iapi04
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: img01
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: img02
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: img03
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: nas05
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: nas06
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: nas07
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: nbuild01
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: ndmongos
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: ndmongoa
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: ndmongom
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: nn01
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: nn02
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: nn03
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: relay01
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: relay02
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: relay03
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: relay04
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: rnas01
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: tapi01
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: tapi02
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: tapi03
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: tapi04
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: tapi05
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: tapi06
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: tapi07
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: tapi08
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: tbl02
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: util01
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: build01
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True
+
+    - host: zbx01
+      port: 22
+      username: dd-agent
+      sftp_check: True
+      private_key_file: /opt/datadog-agent/.ssh/datadog_ssh_check_id_rsa
+      add_missing_keys: True

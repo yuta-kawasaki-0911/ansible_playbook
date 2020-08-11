@@ -1,0 +1,139 @@
+---
+#- name: ディスク、パーティション設定(共通)
+#  include: partition_config.yml
+# []noatimeの設定はslaveだけだからそこもうちょっと見直す
+
+# slave nodeだけnoatime設定書く
+
+- name: CDHのyum repositoryの設定(共通)
+  include: ../../common_build/tasks/CDH_yum_conf.yml
+
+- name: Hadoop用カーネルパラメータを設定(共通)
+  include: ../../common_build/tasks/Hd_karnel_conf.yml
+
+- name: nnミドルウェアのインストール
+  yum: name={{item}} state=present
+  with_items:
+    - hadoop-yarn-resourcemanager
+    - hadoop-hdfs-namenode
+    - hadoop-lzo
+    - hadoop-hdfs-journalnode
+    - hadoop-hdfs-zkfc
+    - zookeeper-server
+
+- name: シンボリックリンクの調整
+  include: ../../common_build/tasks/create_link_slf4j-log4j12jar.yml
+
+- name: 自動起動の設定をoffにしておく(nn)
+  service: name={{ item }} enabled=off
+  with_items:
+    - hadoop-hdfs-journalnode
+    - hadoop-hdfs-namenode
+    - hadoop-hdfs-zkfc
+    - hadoop-yarn-resourcemanager
+    - zookeeper-server
+
+- name: 自動起動の設定をoffにしておく(jobhistory)
+
+- name: 必要なユーザの作成
+  include: ../../common_build/tasks/create_user.yml
+
+- name: confファイルの準備
+  include: ../../common_build/tasks/create_conf.yml
+
+- name: 設定ファイルを記述(共通)
+  include: ../../common_build/tasks/give_conf_files.yml
+
+- name: hdfs設定ファイルを記述(nn)
+  vars: 
+    host_name: nn01
+  template:
+    src: '{{ item }}'
+    dest: /etc/hadoop/conf.class/hdfs-site.xml
+  with_items:
+    - hdfs-site.xml.j2
+  when: group_names == 'nn_standby'
+
+- name: yarn設定ファイルを記述(nn)
+  vars:
+    host_name: nn02
+  template:
+    src: '{{ item }}'
+    dest: /etc/hadoop/conf.class/yarn.xml
+  with_items:
+    - yarn-site.xml.j2
+  when: group_names == 'nn_standby'
+
+- name: 設定ファイルを記述(nn)
+  copy:
+    src: '{{ item }}'
+    dest: /etc/zookeeper/conf/
+    owner: root
+    group: root
+    mode: 644
+  with_items:
+      - zoo.cnf
+      - mapred-site.xml
+      - fair-scheduler.xml
+
+- name: dfs_hosts_allow.txt を用意する
+  copy:
+    src: '{{ item }}'
+    dest: /etc/hadoop/conf/
+    owner: root
+    group: root
+    mode: 644
+  with_items:
+    - dfs_hosts_allow.txt
+
+- name: ディレクトリの作成
+  file:
+    path: '{{ item }}'
+    state: directory
+  with_items:
+    - /hadoop/dfs/nn
+    - /hadoop/dfs/jn
+    - /hadoop/mapred/local
+    - /hadoop/tmp
+
+- name: 権限設定
+  file:
+    path: /hadoop/{{ item }}
+    owner: hdfs
+    group: hadoop
+  with_items:
+    - dfs
+    - tmp
+
+- name: 権限設定
+  file:
+    path: /hadoop/mapred
+    owner: mapred
+    group: hadoop
+
+- name: 権限設定
+  file:
+    path: /hadoop
+    mode: 755
+
+- name: ディレクトリの権限設定
+  file:
+    path: /hadoop/dfs
+    owner: hdfs
+    group: hadoop
+
+- name: ディレクトリの権限設定
+  file:
+    path: /hadoop
+    mode: 755
+
+- name: nn01,nn02同士でmapredがssh通信できるように
+  become_user: hdfs
+  command: ssh-keygen -t rsa -f /root/.ssh/id_rsa -N ''
+
+- debug:
+    msg: '必ずrootでnn01,nn02から sshして全クラスタに繋がる事を確認しておくこと。'
+- debug:
+    msg: 'TT DN 起動しないとかよく分からない現象に遭遇する'
+- debug:
+    msg: '初期化、起動、failoverテストはcloudera managerを使って行う'

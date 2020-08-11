@@ -1,0 +1,4 @@
+---
+- name: restart apache service
+  shell:
+    /etc/init.d/httpd restart

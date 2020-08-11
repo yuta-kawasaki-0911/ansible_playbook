@@ -1,0 +1,5 @@
+---
+- name: copy the file
+  copy:
+    src: sysops 
+    dest: /etc/sudoers.d/

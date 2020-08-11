@@ -1,0 +1,10 @@
+---
+- name: install tomcat
+  yum:
+    name: apache-tomcat
+
+- name: set config file
+  copy:
+    src: server.xml
+    dest: /usr/local/tomcat/conf/
+    mode: '0600'

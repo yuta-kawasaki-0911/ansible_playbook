@@ -1,0 +1,6 @@
+init_config:
+
+instances:
+- name: cron
+  search_string: ["crond"]
+  exact_match: False

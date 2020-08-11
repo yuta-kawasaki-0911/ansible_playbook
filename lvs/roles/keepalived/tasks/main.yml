@@ -1,0 +1,22 @@
+---
+- name: copy rpm files
+  copy:
+    src: '{{ item }}'
+    dest: /tmp
+  with_items:
+    - keepalived-1.2.7-3.el6.x86_64.rpm
+    - ipvsadm-1.26-2.el6.x86_64.rpm
+
+- name: install keepalived
+  yum:
+    name: /tmp/{{ item }}
+    state: present
+  with_items:
+    - keepalived-1.2.7-3.el6.x86_64.rpm
+    - ipvsadm-1.26-2.el6.x86_64.rpm  
+
+- name: set config file
+  copy:
+    src: keepalived_{{ service }}.conf
+    dest: /etc/keepalived/keepalived.conf
+    mode: '0644'

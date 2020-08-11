@@ -1,0 +1,10 @@
+---
+- hosts: target
+  become: yes
+  tasks:
+    - name: check os version
+      command: cat /etc/redhat-release
+      register: os_ver_result
+
+    - name: os version out
+      debug: var=os_ver_result.stdout_lines

@@ -1,0 +1,10 @@
+---
+- hosts: add
+  become: yes
+  vars_files:
+    - vars/mount.yml
+  roles:
+    - ../common_build/roles/common
+    - ../common_build/roles/mysql_5.7
+    - mysql_multiproccess
+    - ssd_mount

@@ -1,0 +1,12 @@
+---
+- hosts: add
+  become: yes
+  vars:
+    service: dsp
+    net_interfaces:
+      - em1
+      - em2
+  roles:
+    - ../common_build/roles/common
+    - lvs
+    - keepalived

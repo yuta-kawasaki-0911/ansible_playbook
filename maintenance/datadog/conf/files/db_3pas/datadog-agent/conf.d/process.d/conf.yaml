@@ -1,0 +1,20 @@
+init_config:
+
+instances:
+- name: mysql
+  search_string: ["plugin --user=mysql"]
+  exact_match: False
+# BEGIN Too many processes monitor
+- name: All
+  search_string: ['All']
+# END Too many processes monitor
+# BEGIN Cron is running monitor
+- name: cron
+  search_string: ["crond"]
+  exact_match: False
+# END Cron is running monitor
+# BEGIN rsyslogd is running monitor
+- name: rsyslogd
+  search_string: ["rsyslogd"]
+  exact_match: False
+# END rsyslogd is running monitor

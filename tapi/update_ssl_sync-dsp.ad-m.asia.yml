@@ -1,0 +1,28 @@
+---
+- hosts: target
+  tasks:
+    - name: lvsから外す
+      command: mv /usr/local/nginx/html/health.html /usr/local/nginx/html/health.html_bk
+      tags: remove
+
+- hosts: target
+  become: yes
+  vars_files:
+    - vars/ssl_sync-dsp.ad-m.asia.yml
+  roles:
+    - { role: ssl_sync-dsp.ad-m.asia, tags: setting }
+
+- hosts: target
+  tasks:
+    - name: nginx再起動
+      become: yes
+      command: /usr/local/nginx/sbin/nginx -s reload
+      tags: add
+      notify: lvsに戻す
+    - name: 10秒待つ
+      pause:
+        seconds: 10
+      tags: add
+  handlers:
+    - name: lvsに戻す
+      command: mv /usr/local/nginx/html/health.html_bk /usr/local/nginx/html/health.html

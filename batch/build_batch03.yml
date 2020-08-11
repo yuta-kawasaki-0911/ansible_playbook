@@ -1,0 +1,23 @@
+---
+- hosts: add
+  become: true
+  vars:
+    create_host: batch03
+    mysql_password:
+  roles: #batch01とbatch02の設定を行っている
+    - ../common_build/roles/common
+    - batch01
+    - ../common_build/roles/java
+    - mysql
+    - ../common_build/roles/hadoop_client
+    - sqoop
+    - azkaban
+    - ruby
+    - ../common_build/roles/mount
+    - activemq
+    - batch02
+    - ../common_build/roles/mount
+    - batch03
+
+
+# azkabanのエラーメール設定を行う

@@ -1,0 +1,14 @@
+---
+- hosts: target
+  become: yes
+  vars_files:
+    - vars/ssl_t-admatrix.jp.yml
+  roles:
+    - { role: ssl_t-admatrix.jp, tags: setting }
+
+- hosts: target
+  tasks:
+    - name: nginx再起動
+      become: yes
+      command: /usr/local/nginx/sbin/nginx -s reload
+      tags: add

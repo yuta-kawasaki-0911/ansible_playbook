@@ -1,0 +1,23 @@
+---
+#oracle java7 インストール
+- name: copy tar file
+  copy:
+    src: server-jre-7u80-linux-x64.tar.gz
+    dest: /tmp
+
+- name: unarchive targz
+  unarchive:
+    src: server-jre-7u80-linux-x64.tar.gz
+    dest: /opt
+
+- name: created link of java
+  alternatives:
+    name: java
+    link: /usr/bin/java
+    path: /opt/jdk1.7.0_80/bin/java
+
+- name: created link of javac
+  alternatives:
+    name: javac
+    link: /usr/bin/javac
+    path: /opt/jdk1.7.0_80/bin/javac

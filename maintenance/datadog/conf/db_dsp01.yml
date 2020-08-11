@@ -1,0 +1,18 @@
+---
+- hosts: db_dsp01
+  become: true
+  tasks:
+  - name: copy common
+    copy:
+      src: common/datadog-agent/
+      dest: /etc/datadog-agent/
+      owner: dd-agent
+      group: dd-agent
+      mode: 0644
+  - name: copy
+    copy:
+      src: db_dsp01/datadog-agent/
+      dest: /etc/datadog-agent/
+      owner: dd-agent
+      group: dd-agent
+      mode: 0644

@@ -1,0 +1,239 @@
+##
+- name: ansibleでSELinuxを操作するために必要なので入れる
+  yum: name=libselinux-python state=present
+
+- name: iptablesの初期化
+  shell: >
+    iptables-save > /etc/sysconfig/iptables.`date +%Y%m%d`;
+    iptables -F;
+    iptables -F -t nat;
+    iptables-save > /etc/sysconfig/iptables;
+    /etc/init.d/iptables restart;
+    /etc/init.d/iptables stop;
+    /etc/init.d/ip6tables stop;
+    chkconfig iptables on;
+    chkconfig ip6tables off;
+    /etc/init.d/iptables start;
+## 
+- name: resolv.confの設定
+  lineinfile: 
+    dest=/etc/resolv.conf
+    line={{ item }}
+  with_items:
+    - 'options timeout:3 attempts:2'
+    - 'nameserver 118.67.70.18'
+    - 'nameserver 202.131.202.5'
+    - 'nameserver 8.8.8.8'
+##
+- name: SSHの設定
+  replace: dest=/etc/ssh/sshd_config regexp='#PermitRootLogin yes' replace='PermitRootLogin yes' backup=yes
+ 
+- name: yumリポジトリの設定
+  yum: 
+    name: yum-plugin-priorities 
+    state: present
+
+- name: copy fullspeed repo
+  copy:
+    src: fullspeed.repo
+    dest: /etc/yum.repos.d/
+    backup: yes
+
+- name: epelリポジトリのダウンロード
+  yum: name={{ item }} state=present
+  with_items:
+  - http://ftp.iij.ad.jp/pub/linux/fedora/epel/6/x86_64/Packages/e/epel-release-6-8.noarch.rpm
+
+- name: epelリポジトリの登録
+  replace:
+    path: /etc/yum.repos.d/epel.repo
+    regexp: '^enabled=.*'
+    replace: 'enabled=0'
+
+- name: remiリポジトリのダウンロード
+  yum: 
+   name: '{{ item }}' 
+   state: present
+  with_items:
+  - http://rpms.famillecollet.com/enterprise/remi-release-6.rpm
+
+- name: remiリポジトリの登録
+  replace:
+    path: /etc/yum.repos.d/remi.repo
+    regexp: '^enabled=.*'
+    replace: 'enabled=0'
+
+- name: remiリポジトリの登録2
+  replace:
+    path: /etc/yum.repos.d/remi.repo
+    regexp: 'Linux 6 -'
+    replace: "Linux {{ansible_distribution_version}} -"
+
+- name: remiリポジトリの登録3
+  replace:
+    path: /etc/yum.repos.d/remi.repo
+    regexp: '/enterprise/6/'
+    replace: '/enterprise/{{ansible_distribution_version}}/'
+  when: ansible_distribution_version == '6.8'
+
+- name: registor remi-safe.repo
+  replace:
+    path: /etc/yum.repos.d/remi-safe.repo
+    regexp: '^enabled=.*'
+    replace: 'enabled=0'
+
+- name: install libssh2 openssl glibc
+  yum:
+    name: '{{ item }}'
+  with_items:
+    - libssh2
+    - openssl
+    - glibc
+
+##
+- name: システム関連ツールのインストール
+  yum:
+    name: '{{ item }}'
+  with_items:
+    - wget
+    - telnet
+    - ntp
+    - rsync
+    - openssh-clients
+    - tree
+    - sysstat
+    - bind-utils
+    - dmidecode
+    - hdparm
+    - nmap
+    - lsof
+    - jwhois
+    - man
+    - pciutils
+    - nfs-utils
+    - nfs-utils-lib
+    - lm_sensors
+    - openssl
+    - tcpdump
+    - wireshark
+    - parted 
+
+- name: install lzo
+  yum: 
+    name: '{{ item }}'
+    state: present
+  with_items:
+    - lzo
+    - lzop
+
+##
+- name: sshconfigの編集
+  replace: 
+    dest: /etc/profile 
+    regexp: 'export PATH USER LOGNAME MAIL HOSTNAME HISTSIZE HISTCONTROL' 
+    replace: 'export PATH USER LOGNAME MAIL HOSTNAME HISTSIZE INPUTRC' 
+    backup: yes
+
+##
+- name: disable selinux
+  selinux: state=disabled
+
+
+## カーネルパラメータの設定
+- name: ファイルの存在チェック
+  stat: path=/etc/modprobe.d/nf_conntrack.conf
+  register: fm
+
+- name: conntrackの作成
+  file:
+    path: /etc/modprobe.d/nf_conntrack.conf
+    state: touch
+  when: not fm.stat.exists
+
+- name: conntrackの編集
+  lineinfile:
+    dest=/etc/modprobe.d/nf_conntrack.conf
+    line={{ item }}
+  with_items:
+    - options nf_conntrack hashsize=37500
+
+##
+- name: sysctl.confのコピー
+  copy:  
+     src=sysctl.conf
+     dest=/etc/ 
+##
+- name: 反映
+  command: sysctl -p
+
+- name: MTU=9000の設定追記
+  lineinfile:
+    path: /etc/sysconfig/network-scripts/ifcfg-em2
+    line: 'MTU=9000'
+  tags: edit
+
+- name: network restart
+  command: /etc/init.d/network restart
+  tags: edit
+
+- name: ntpの定時実行cronの設定
+  stat: path=/etc/cron.hourly/ntpdcron
+  register: ntp
+
+- name: touch file
+  file:
+    path: /etc/cron.hourly/ntpdcron
+    state: touch
+  when: not ntp.stat.exists
+- name: insert text (touch)
+  lineinfile:
+    dest=/etc/cron.hourly/ntpdcron
+    line={{ item }}
+  with_items:
+    - '#!/bin/bash'
+    - '/usr/sbin/ntpdate ns1.freebit.net > /dev/null 2>&1'
+
+- name: パーミッションの変更
+  file:
+    path: '{{ item }}'
+    mode: 0755
+  with_items:
+    - '/etc/cron.hourly/ntpdcron'
+
+## 
+- name: repository for Centos6.8のコピー
+  copy: >
+    src=centos6.8/CentOS-Vault.repo
+    dest=/etc/yum.repos.d/
+
+- name: give hosts
+  copy:
+    src: /home/ansible/admatrixDSP_infra_configfiles/hosts
+    dest: /etc/hosts
+
+- name: create hdfs-sockets directory
+  file:
+    path: /var/run/hdfs-sockets
+    owner: hdfs
+    group: hadoop
+    mode: '0755'
+    state: directory
+
+- name: create spark2 directory
+  file:
+    path: /var/log/spark2
+    owner: spark
+    group: spark
+    mode: '0755'
+    state: directory
+
+- name: set authority directory
+  file:
+    path: /var/log/spark2/lineage
+    state: directory
+
+- name: set authority permission
+  file:
+    path: /var/run/hdfs-sockets
+    state: directory
+

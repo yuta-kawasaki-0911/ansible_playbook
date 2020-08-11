@@ -1,0 +1,10 @@
+---
+- hosts: target
+  become: yes
+  tasks:
+    - name: check apache version
+      shell: /usr/local/apache2/bin/httpd -v 2>&1 | grep version
+      register: apache_ver_result
+
+    - name: apache version out
+      debug: var=apache_ver_result.stdout_lines

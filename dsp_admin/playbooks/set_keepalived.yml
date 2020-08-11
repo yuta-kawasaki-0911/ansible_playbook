@@ -1,0 +1,29 @@
+---
+- hosts: dadmin02-ubu
+  become: yes
+  roles:
+    - ../roles/keepalived #インストールと設定ファイルのコピー
+  tags: setting
+
+- hosts: dadmin02s-ubu
+  become: yes
+  roles:
+    - ../roles/keepalived
+  tags: setting
+
+- hosts: dadmin02-ubu
+  become: yes
+  tasks: 
+    - name: start keepalived
+      service:
+        name: keepalived
+        enabled: yes
+
+- hosts: dadmin02s-ubu
+  become: yes
+  tasks:
+    - name: start keepalived
+      service:
+        name: keepalived
+        enabled: yes
+

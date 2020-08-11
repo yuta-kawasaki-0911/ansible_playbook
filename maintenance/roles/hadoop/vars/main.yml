@@ -1,0 +1,5 @@
+---
+now_date: "{{ lookup('pipe','date +%Y%m%d') }}"
+hadoopdir: /etc/hadoop/conf/
+yarnfile: yarn-site.xml
+

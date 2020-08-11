@@ -1,0 +1,6 @@
+---
+- name: copy the sudoers files
+  copy:
+    src: '{{ inventory_hostname }}'
+    dest: /etc/sudoers.d/sudoers
+

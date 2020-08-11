@@ -1,0 +1,4 @@
+data_cer: data-dsp.ad-m.asia.cer.20180323
+data_key: data-dsp.ad-m.asia.key.20180323
+data_cer_path: /usr/local/apache2/conf/data-dsp.ad-m.asia/cn_data-dsp.ad-m.asia.cer
+data_key_path: /usr/local/apache2/conf/data-dsp.ad-m.asia/cn_data-dsp.ad-m.asia.key

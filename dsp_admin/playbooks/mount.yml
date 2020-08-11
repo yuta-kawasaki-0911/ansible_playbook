@@ -1,0 +1,7 @@
+---
+- hosts: add
+  become: yes
+  vars_files:
+    - ../vars/dbatch01_ubu_mount.yml
+  roles:
+    - ../../common_build/roles/mount

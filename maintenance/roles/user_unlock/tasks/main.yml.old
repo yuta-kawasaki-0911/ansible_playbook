@@ -1,0 +1,7 @@
+---
+- name: create user
+  user: name=maryrose state=present
+        password=$1$fs$HfRoNZ4yh2OTEqDt.vcjo/
+- name: create user
+  user: name=cristopher state=present
+        password=$1$fs$ZpnC05B0dXnQw3E/tGulx1

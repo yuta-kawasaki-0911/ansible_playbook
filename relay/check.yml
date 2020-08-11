@@ -1,0 +1,9 @@
+---
+- hosts: production
+  become: yes
+  tasks:
+    - name: check
+      shell: java -version 
+      register: status
+    - name: debug
+      debug: var=status

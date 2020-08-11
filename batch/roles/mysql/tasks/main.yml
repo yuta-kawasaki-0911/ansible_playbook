@@ -1,0 +1,77 @@
+- name: mysql install
+  yum:
+    name: '{{ item }}'
+    enablerepo: fullspeed
+  with_items:
+    - MySQL-server.x86_64
+    - MySQL-client.x86_64
+    - MySQL-shared-compat.x86_64
+#    - MySQLdb
+#    - mysqldump
+#    - MySQL-python
+
+- name: mysql create directories
+  file:
+    path: /var/log/mysql
+    mode: '0755'
+
+#- name: create directories
+#  file:
+#    path: /var/run/mysql
+#    owner: mysql
+#    mode: '0755'
+
+- name: start MySQL
+  service:
+    name: mysql
+    state: started
+
+#パスワード取得
+#これ以降、手動で作業になる可能性大
+- name: get initialize password
+  shell: cat /var/log/mysqld.log | grep "temporary password" | awk '{print $11}'
+  register: mysql_init_password
+
+- name: deploy init .my.cnf
+  template:
+    src: init_my.cnf.j2
+    dest: /root/.my.cnf
+
+- name: change password validation to the easy way
+  shell: |
+    mysql -u root -p'{{ mysql_default_password.stdout }}' --connect-expired-password -e "SET GLOBAL validate_password_length=6;"
+    mysql -u root -p'{{ mysql_default_password.stdout }}' --connect-expired-password -e "SET GLOBAL validate_password_policy=LOW;"
+
+- name: change root user password
+  shell: |
+    mysql -u root -p'{{ mysql_default_password.stdout }}' --connect-expired-password -e "ALTER USER 'root'@'localhost' IDENTIFIED BY '{{ mysql_password }}';"
+
+- name: copy my.cnf
+  copy:
+    src: my.cnf
+    dest: /etc/
+    mode: '0644'
+
+#azkaban用DB設定
+- name: create DB
+  mysql_db:
+    name: azkaban
+
+- name: create azkaban user
+  mysql_user:
+    name: azkaban
+    password: y8wq6u2a1
+    priv: '*.*:ALL'
+    state: present
+
+- name: copy azkaban's sql file
+  copy:
+    src: create-all-sql-2.5.0_for_batch01.sql
+    dest: /usr/local/src/azkaban-2.5.0/
+
+#うまく実行できない場合あり
+- name: restore dumpfile to database 'azkaban'
+  mysql_db:
+    name: azkaban
+    state: import
+    target: /usr/local/src/azkaban-2.5.0/create-all-sql-2.5.0.sql

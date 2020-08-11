@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<allocations>
+
+  <queue name="root">
+    <minResources>1000 mb,1vcores</minResources>
+    <maxResources>1114112 mb,306vcores</maxResources>
+    <maxAMShare>0.5</maxAMShare>
+    <schedulingPolicy>fair</schedulingPolicy>
+
+    <queue name="hdfs">
+      <aclSubmitApps>hdfs</aclSubmitApps>
+      <minResources>536000 mb,159vcores</minResources>
+      <maxResources>1002700 mb,276vcores</maxResources>
+      <weight>8.0</weight>
+    </queue>
+
+    <queue name="dsp">
+      <aclSubmitApps>dsp</aclSubmitApps>
+      <minResources>111411 mb,20vcores</minResources>
+<!--  <maxResources>268000 mb,60vcores</maxResources> -->
+      <maxResources>536000 mb,80vcores</maxResources>
+      <weight>3.0</weight>
+    </queue>
+  </queue>
+
+  <queuePlacementPolicy>
+    <rule name="user" />
+  </queuePlacementPolicy>
+
+</allocations>

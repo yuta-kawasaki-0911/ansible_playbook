@@ -1,0 +1,32 @@
+---
+- name: control onpremise server1
+  hosts: test
+  become: true
+  roles:
+    - { role: hosts, tags: hosts} ##copy hosts files
+    - { role: user_add, tags: user_add} ##create Linux user and set password
+    - { role: user_del, tags: user_del} ##del Linux user and set password
+    - { role: user_unlock, tags: user_unlock} ##unlock dd-agent
+    - { role: datadog_srv, tags: datadog_srv} ##restart datadog-agent
+    - { role: datadog_inst, tags: datadog_inst} ##install datadog-agent
+    - { role: datadog_uninst, tags: datadog_uninst} ##uninstall datadog-agent
+    - { role: zabbix_srv, tags: zabbix_srv} ##service zabbix_agents
+    - { role: fluentd, tags: fluentd} ##install fluentd
+    - { role: fluentd_restart, tags: fluentd_restart} ##restart fluentd
+    - { role: hadoop, tags: hadoop} ##restart fluentd
+    - { role: sudo, tags: sudo} ##restart fluentd
+    - { role: dell, tags: dell} ##restart fluentd
+
+- name: control onpremise server2
+  hosts: dumy
+  become: true
+  roles:
+    - { role: ssl_apache_dadmin01, tags: ssl_apache_dadmin01} ##update ssl certificate for apache
+    - { role: ssl_apache, tags: ssl_apache} ##update ssl certficate for apache
+    - { role: ssl_apache_health, tags: ssl_apache_health} ##restart apache's service
+    - { role: ssl_apache_restart, tags: ssl_apache_restart} ##restart apache's service
+    - { role: ssl_apache_health_back, tags: ssl_apache_health_back} ##restart apache's service
+    - { role: ssl_nginx, tags: ssl_nginx} ##update ssl certificate for nginx
+    - { role: ssl_nginx_health, tags: ssl_nginx_health} ##move health check file
+    - { role: ssl_nginx_reload, tags: ssl_nginx_reload} ##restart apache's service
+    - { role: ssl_nginx_health_back, tags: ssl_nginx_health_back} ##restart apache's service

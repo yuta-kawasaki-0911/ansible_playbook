@@ -1,0 +1,12 @@
+---
+- name: redisのインストール
+  yum:
+    name: '{{ item }}'
+    enablerepo: fullspeed
+  with_items:
+    - redis
+# dkvsはfsリポジトリ。それ以外はremi
+# 設定ファイルは開発側がgitで管理しているので任せる。
+
+
+# 起動処理は一旦保留

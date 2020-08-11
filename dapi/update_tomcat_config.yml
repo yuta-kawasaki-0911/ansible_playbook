@@ -1,0 +1,59 @@
+---
+- hosts: target
+  tasks:
+    - name: lvsから外す
+      command: mv /usr/local/apache2/htdocs/health.html /usr/local/apache2/htdocs/health.html_bk
+      tags: remove
+
+- hosts: target
+  become: yes
+  vars_files:
+    - vars/tomcat_config.yml
+  tasks:
+    - name: 本日の日付を取得
+      local_action: command date +"%Y%m%d"
+      register: date
+      tags: setting
+      
+    - name: バックアップを作成
+      command: "cp {{ item }} {{ item }}.{{ date.stdout }}"
+      with_items:
+        - '{{ tomcat_config_path }}'
+      ignore_errors: yes
+      tags: setting
+
+    - name: tomcatの定義ファイルをコピーする 
+      copy:
+        src: '{{ item.src }}'
+        dest: '{{ item.dest }}'
+        mode: 0600
+        owner: tomcat
+        group: tomcat
+      with_items:
+        - { src: '{{ update_tomcat_config }}', dest: '{{ tomcat_config_path }}' }
+      tags: setting
+
+# サービスへの戻しは課題がある為、手動で行うことが好ましい。
+# （起動 / 停止の時間が読めない、プロセスが残存することがある、稼働確認が必要）
+#- hosts: target
+#  tasks:
+#    - name: tomcat停止
+#      become: yes
+#      command: sudo -u tomcat /usr/local/tomcat/bin/shutdown.sh
+#      tags: add
+#    - name: 300秒待つ
+#      pause:
+#        seconds: 300
+#      tags: add
+#    - name: tomcat起動
+#      become: yes
+#      command: sudo -u tomcat /usr/local/tomcat/bin/startup.sh
+#      tags: add
+#      notify: lvsに戻す
+#    - name: 300秒待つ
+#      pause:
+#        seconds: 300
+#      tags: add
+#  handlers:
+#    - name: lvsに戻す
+#      command: mv /usr/local/apache2/htdocs/health.html_bk /usr/local/apache2/htdocs/health.html

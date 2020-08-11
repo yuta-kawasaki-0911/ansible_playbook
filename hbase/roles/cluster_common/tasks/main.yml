@@ -1,0 +1,11 @@
+---
+- name: remove ntpdcron
+  file:
+    path: /etc/cron.hourly/ntpdcron
+    state: absent
+  tags: test
+
+- name: ntpd start
+  service:
+    name: ntpd
+    state: started

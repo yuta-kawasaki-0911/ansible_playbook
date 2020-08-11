@@ -1,0 +1,19 @@
+settings{
+    logfile = "/var/log/lsyncd/lsyncd.log",
+    statusFile = "/tmp/lsyncd.stat",
+    statusInterval = 1,
+    delay = 1,
+    maxProcesses = 6,
+    inotifyMode = "CloseWrite or Modify",
+}
+
+sync{
+    default.rsync,
+    source = "/var/app/acq",
+    target = "/nas/app/{{ gb_ip }}/acq",
+    rsync = {
+        archive = true,
+        verbose = false,
+        _extra = {"--append"}
+    }
+}

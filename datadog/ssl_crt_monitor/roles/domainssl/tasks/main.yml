@@ -1,0 +1,31 @@
+---
+- name: copy .yaml
+  copy:
+    src: domain_ssl_cert_months_left.yaml
+    dest: /etc/datadog-agent/conf.d/.
+  become: true
+  
+- name: copy .py
+  copy:
+    src: domain_ssl_cert_months_left.py
+    dest: /etc/datadog-agent/checks.d/.
+  become: true
+
+- name: restart datadog-agent
+  become: true
+  service:
+    name: datadog-agent
+    state: restarted
+    enabled: yes
+
+- become: yes
+  file:
+    path: /etc/datadog-agent/conf.d/domain_ssl_cert_months_left.yaml
+    owner: dd-agent
+    group: dd-agent
+
+- become: yes
+  file:
+    path: /etc/datadog-agent/checks.d/domain_ssl_cert_months_left.py
+    owner: dd-agent
+    group: dd-agent

@@ -1,0 +1,15 @@
+[snn_active]
+snn01
+
+[snn_standby]
+snn02
+
+[snn_jobhistory]
+snn03
+
+[sdn]
+sdn[01:09]
+
+[stg_add]
+sdn03
+

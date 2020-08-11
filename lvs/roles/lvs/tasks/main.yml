@@ -1,0 +1,118 @@
+---
+- name: sysctl.confを設定(centos6.5)
+  copy:
+    src: CentOS{{ ansible_distribution_version }}_sysctl.conf
+    dest: /etc/sysctl.conf
+    mode: '0644'
+    backup: yes
+  when:
+     - ansible_distribution == "CentOS"
+     - ansible_distribution_version == "6.5"
+
+- name: sysctl.confを設定(centos6.6)
+  copy:
+    src: CentOS{{ ansible_distribution_version }}_sysctl.conf
+    dest: /etc/sysctl.conf
+    mode: '0644'
+    backup: yes
+  when:
+     - ansible_distribution == "CentOS"
+     - ansible_distribution_version == "6.6"
+
+- name: sysctl.confを設定(centos6.7以上)
+  copy:
+    src: CentOS6.7_sysctl.conf
+    dest: /etc/sysctl.conf
+    mode: '0644'
+    backup: yes
+  when:
+     - ansible_distribution == "CentOS"
+     - ansible_distribution_version >= "6.7"
+  tags: test
+
+##
+- name: ipマスカレードのREDIRECTの設定(3pas)
+  iptables:
+    table: nat
+    chain: PREROUTING
+    destination: 192.168.134.20/32
+    protocol: tcp
+    jump: REDIRECT
+  when: service == "3pas"
+
+- name: ipマスカレードのREDIRECTの設定(dsp)
+  iptables:
+    table: nat
+    chain: PREROUTING
+    destination: 192.168.199.20/32
+    protocol: tcp
+    jump: REDIRECT
+  when: service == "dsp"
+
+- name: ipマスカレード設定(3pas)
+  iptables:
+    table: nat
+    chain: POSTROUTING
+    out_interface: '{{ item }}'
+    jump: MASQUERADE
+  with_items:
+    - em1
+    - em2
+  when: service == "3pas"
+
+- name: ipマスカレード設定(dsp)
+  iptables:
+    table: nat
+    chain: POSTROUTING
+    out_interface: '{{ item }}'
+    jump: MASQUERADE
+  with_items:
+    - bond0
+    - bond1
+  when: service == "dsp"
+
+- name: iptablesの設定を保存
+  command: /etc/init.d/iptables save
+
+- name: install irqbalance
+  yum: 
+    name: irqbalance
+    state: present
+
+- name: start irqbalance
+  service:
+    name: irqbalance
+    state: started
+    enabled: yes
+
+- name: add NOZEROCONF=yes
+  lineinfile:
+    path: /etc/sysconfig/network
+    line: "NOZEROCONF=yes"
+  tags: test
+
+- name: copy hosts.allow
+  copy:
+    src: hosts.allow
+    dest: /etc/hosts.allow
+    mode: '0644'
+
+- name: copy hosts.deny
+  copy:
+    src: hosts.deny
+    dest: /etc/hosts.deny
+    mode: '0644'
+
+- name: copy rc.local
+  copy:
+    src: rc.local
+    dest: /etc/rc.d/rc.local
+    mode: '0755'
+
+- name: reboot
+  shell: "sleep 2 && reboot"
+  async: 1
+  poll: 0
+
+- name: waiting for reboot
+  local_action: wait_for host={{ inventory_hostname }} port=22 delay=30

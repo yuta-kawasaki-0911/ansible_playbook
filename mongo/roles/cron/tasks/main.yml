@@ -1,0 +1,14 @@
+---
+- name: 必要なディレクトリを作成
+  file:
+    path: /root/maintenance
+    state: directory
+    mode: '0755'
+  when: inventory_hostname == 'n-ndmongos'
+
+- name: cron,logrotate設定
+  copy:
+    src: '{{ item.src }}'
+    dest: '{{ item.dest }}'
+    mode: '{{ item.mode }}'
+  with_items: '{{ cron_info }}'

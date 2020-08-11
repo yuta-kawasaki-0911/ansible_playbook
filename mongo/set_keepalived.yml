@@ -1,0 +1,39 @@
+---
+- hosts: ndmongom
+  become: yes
+  vars:
+    vrip: 173
+    global_vip: 192.168.199.73
+    interface: eth3
+  roles:
+    - keepalived #インストールと設定ファイルのコピー
+  tags: setting
+
+- hosts: ndmongos
+  vars:
+    vrip: 173
+    global_vip: 192.168.199.73
+    interface: em2
+  become: yes
+  roles:
+    - keepalived
+  tags: setting
+
+- hosts: ndmongom
+  become: yes
+  tasks: 
+    - name: start keepalived
+      service:
+        name: keepalived
+        enabled: yes
+  tags: start
+
+- hosts: ndmongos
+  become: yes
+  tasks:
+    - name: start keepalived
+      service:
+        name: keepalived
+        enabled: yes
+  tags: start
+

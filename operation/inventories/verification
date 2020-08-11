@@ -1,0 +1,8 @@
+[server]
+nshsn01
+tower_guest01
+nshsn02
+awx_guest01
+
+[target]
+tower_guest01

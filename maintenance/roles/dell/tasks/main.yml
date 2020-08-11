@@ -1,0 +1,4 @@
+---
+- name: move healthcheck  
+  shell: >
+    /opt/dell/srvadmin/sbin/srvadmin-services.sh stop

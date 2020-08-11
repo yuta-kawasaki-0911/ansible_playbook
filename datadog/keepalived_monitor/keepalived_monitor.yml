@@ -1,0 +1,4 @@
+---
+- hosts: dadmin02:dadmin02s:ndmongom:ndmongos
+  roles:
+      - { role: keepalived }

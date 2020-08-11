@@ -1,0 +1,3 @@
+nginx_conf:
+    - { src: ./roles/nginx/files/dadmin_03/default.conf, dest: /etc/nginx/conf.d/, mode: '0644' }
+    - { src: ./roles/nginx/files/dadmin_03/nginx.conf, dest: /etc/nginx/, mode: '0644' }

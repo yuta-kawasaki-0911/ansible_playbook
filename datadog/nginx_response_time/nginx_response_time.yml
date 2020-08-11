@@ -1,0 +1,28 @@
+---
+- hosts: api
+  roles:
+      - { role: api0x, tags: api }
+
+- hosts: bidresult
+  roles:
+      - { role: bidresult, tags: bidresult }
+
+- hosts: iapi
+  roles:
+      - { role: iapi, tags: iapi }
+
+- hosts: tapi
+  roles:
+      - { role: tapi, tags: tapi }
+
+- hosts: img
+  roles:
+      - { role: img, tags: img }
+
+- hosts: capi
+  roles:
+      - { role: capi, tags: capi }
+
+- hosts: relay
+  roles:
+      - { role: relay, tags: relay }

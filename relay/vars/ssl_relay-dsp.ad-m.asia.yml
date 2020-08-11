@@ -1,0 +1,4 @@
+update_crt: cn_relay-dsp.ad-m.asia.crt.to20210718
+update_key: relay-dsp.ad-m.asia.key.to20210718
+crt_path: /etc/nginx/conf.d/cn_relay-dsp.ad-m.asia.crt
+key_path: /etc/nginx/conf.d/relay-dsp.ad-m.asia.key

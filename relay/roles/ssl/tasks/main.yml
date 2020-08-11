@@ -1,0 +1,50 @@
+---
+
+- name: バックアップを作成
+  command: "cp {{ item }} {{ item }}.{{ date }}"
+  with_items:
+    - /etc/nginx/conf.d/cn_relay-dsp.ad-m.asia.crt
+    - /etc/nginx/conf.d/relay-dsp.ad-m.asia.key
+
+- name: ファイルをコピー
+  copy:
+    src: '{{ item.src }}'
+    dest: '{{ item.dest }}'
+    mode: 0755
+  with_items:
+    - { src: '{{ relay_crt }}', dest: /etc/nginx/conf.d/cn_relay-dsp.ad-m.asia.crt }
+    - { src: '{{ relay_key }}', dest: /etc/nginx/conf.d/relay-dsp.ad-m.asia.key }
+
+#証明書の確認
+
+- name: ssl証明書の確認
+  shell: openssl x509 -text -noout -in /etc/nginx/conf.d/cn_relay-dsp.ad-m.asia.crt
+  register: check_relay_crt
+
+- name: 鍵一致のテスト(bidding.cer)
+  shell: openssl x509 -noout -modulus -in /usr/local/apache2/conf/bidding-dsp.ad-m.asia/cn_bidding-dsp.ad-m.asia.cer | openssl md5
+  register: match_relay_crt
+
+- name: 鍵一致のテスト(bidding.key)
+  shell: openssl rsa -noout -modulus -in /usr/local/apache2/conf/bidding-dsp.ad-m.asia/bidding-dsp.ad-m.asia.key | openssl md5
+  register: match_relay_key
+
+- name: nginx設定ファイルの文法チェック
+  command: /usr/local/nginx/sbin/nginx -t -c /etc/nginx/nginx.conf
+  register: configtest
+
+- name: デバッグ
+  debug:
+    var: check_relay_crt.stdout_lines
+
+- name: デバッグ
+  debug:
+    var: match_relay_crt.stdout_lines
+
+- name: デバッグ
+  debug:
+    var: match_relay_key.stdout_lines
+
+- name: nginxのconfigtest
+  debug:
+    var: configtest.stderr

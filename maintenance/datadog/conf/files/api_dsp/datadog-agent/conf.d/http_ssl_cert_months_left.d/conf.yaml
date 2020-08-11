@@ -1,0 +1,5 @@
+init_config:
+
+instances:
+  - name: cert
+    ca_certs: /usr/local/apache2/conf/bidding-dsp.ad-m.asia/cn_bidding-dsp.ad-m.asia.cer

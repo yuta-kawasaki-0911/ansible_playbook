@@ -1,0 +1,11 @@
+- name: サービスの自動起動
+  service:
+    name: cloudera-scm-agent
+    state: started
+    enabled: yes
+
+- name: サービスの自動起動
+  service: 
+    name: ntpd
+    state: started
+    enabled: yes

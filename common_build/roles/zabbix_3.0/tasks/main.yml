@@ -1,0 +1,18 @@
+---
+##
+- name: get zabbix3.0
+  yum: 
+    name: http://repo.zabbix.com/zabbix/3.0/rhel/6/x86_64/zabbix-release-3.0-1.el6.noarch.rpm
+    state: present
+##
+- name: install zabbix agent3.0
+  shell: sed -i "s/^enabled=.*/enabled=0/g" /etc/yum.repos.d/zabbix.repo;
+         yum -y --enablerepo=zabbix,zabbix-non-supported install zabbix zabbix-agent zabbix-sender;
+##
+- name: enable zabbix's service 
+  service: name=zabbix-agent state=started enabled=yes
+
+- name: copy 
+  copy: >
+    src=discovery.conf
+    dest=/etc/zabbix/zabbix_agentd.d/

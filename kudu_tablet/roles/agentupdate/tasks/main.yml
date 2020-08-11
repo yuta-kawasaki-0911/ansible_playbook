@@ -1,0 +1,4 @@
+- name: cloudera manager-agentのアップデート
+  yum: name={{ item }} enablerepo=cloudera-manager state=latest
+  with_items:
+  -  cloudera-manager-agent

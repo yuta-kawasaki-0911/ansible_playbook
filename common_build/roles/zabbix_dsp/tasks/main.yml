@@ -1,0 +1,6 @@
+---
+##
+- name: DSP
+  shell: rsync -av 192.168.199.253:/etc/zabbix/zabbix_agentd.d/* /etc/zabbix/zabbix_agentd.d/.;
+         sed -i "s/^Server=.*/Server=192.168.199.240,192.168.199.237/g" /etc/zabbix/zabbix_agentd.conf;
+         sed -i "s/^ServerActive=.*/ServerActive=192.168.199.240,192.168.199.237/g" /etc/zabbix/zabbix_agentd.conf;

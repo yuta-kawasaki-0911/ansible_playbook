@@ -1,0 +1,425 @@
+init_config:
+  # Change default path of trusted certificates
+  # ca_certs: /etc/ssl/certs/ca-certificates.crt
+
+instances:
+  - name: Hadoop Data Node (dn01.3pas.admatrix.jp)
+    url: http://192.168.134.120:50075
+    timeout: 10
+    http_response_status_code: 200
+    min_collection_interval: 20
+    skip_event: true
+  - name: Hadoop Data Node (dn02.3pas.admatrix.jp)
+    url: http://192.168.134.121:50075
+    timeout: 10
+    http_response_status_code: 200
+    min_collection_interval: 20
+    skip_event: true
+  - name: Hadoop Data Node (dn03.3pas.admatrix.jp)
+    url: http://192.168.134.122:50075
+    timeout: 10
+    http_response_status_code: 200
+    min_collection_interval: 20
+    skip_event: true
+  - name: Hadoop Data Node (dn04.3pas.admatrix.jp)
+    url: http://192.168.134.123:50075
+    timeout: 10
+    http_response_status_code: 200
+    min_collection_interval: 20
+    skip_event: true
+  - name: Hadoop Data Node (dn05.3pas.admatrix.jp)
+    url: http://192.168.134.124:50075
+    timeout: 10
+    http_response_status_code: 200
+    min_collection_interval: 20
+    skip_event: true
+  - name: Hadoop Data Node (dn06.3pas.admatrix.jp)
+    url: http://192.168.134.125:50075
+    timeout: 10
+    http_response_status_code: 200
+    min_collection_interval: 20
+    skip_event: true
+  - name: Hadoop Data Node (dn07.3pas.admatrix.jp)
+    url: http://192.168.134.126:50075
+    timeout: 10
+    http_response_status_code: 200
+    min_collection_interval: 20
+    skip_event: true
+  - name: Hadoop Data Node (dn08.3pas.admatrix.jp)
+    url: http://192.168.134.127:50075
+    timeout: 10
+    http_response_status_code: 200
+    min_collection_interval: 20
+    skip_event: true
+  - name: Hadoop Data Node (dn09.3pas.admatrix.jp)
+    url: http://192.168.134.128:50075
+    timeout: 10
+    http_response_status_code: 200
+    min_collection_interval: 20
+    skip_event: true
+  - name: Hadoop Data Node (dn10.3pas.admatrix.jp)
+    url: http://192.168.134.129:50075
+    timeout: 10
+    http_response_status_code: 200
+    min_collection_interval: 20
+    skip_event: true
+  - name: Hadoop Data Node (dn11.3pas.admatrix.jp)
+    url: http://192.168.134.130:50075
+    timeout: 10
+    http_response_status_code: 200
+    min_collection_interval: 20
+    skip_event: true
+  - name: Hadoop Data Node (dn12.3pas.admatrix.jp)
+    url: http://192.168.134.131:50075
+    timeout: 10
+    http_response_status_code: 200
+    min_collection_interval: 20
+    skip_event: true
+  - name: Hadoop Data Node (dn13.3pas.admatrix.jp)
+    url: http://192.168.134.132:50075
+    timeout: 10
+    http_response_status_code: 200
+    min_collection_interval: 20
+    skip_event: true
+  - name: Hadoop Data Node (dn14.3pas.admatrix.jp)
+    url: http://192.168.134.133:50075
+    timeout: 10
+    http_response_status_code: 200
+    min_collection_interval: 20
+    skip_event: true
+  - name: Hadoop Data Node (dn15.3pas.admatrix.jp)
+    url: http://192.168.134.134:50075
+    timeout: 10
+    http_response_status_code: 200
+    min_collection_interval: 20
+    skip_event: true
+  - name: Hadoop Data Node (dn16.3pas.admatrix.jp)
+    url: http://192.168.134.135:50075
+    timeout: 10
+    http_response_status_code: 200
+    min_collection_interval: 20
+    skip_event: true
+  - name: Hadoop Data Node (dn17.3pas.admatrix.jp)
+    url: http://192.168.134.136:50075
+    timeout: 10
+    http_response_status_code: 200
+    min_collection_interval: 20
+    skip_event: true
+  - name: Hadoop Data Node (dn18.3pas.admatrix.jp)
+    url: http://192.168.134.137:50075
+    timeout: 10
+    http_response_status_code: 200
+    min_collection_interval: 20
+    skip_event: true
+  - name: Hadoop Data Node (dn19.3pas.admatrix.jp)
+    url: http://192.168.134.138:50075
+    timeout: 10
+    http_response_status_code: 200
+    min_collection_interval: 20
+    skip_event: true
+  - name: Hadoop Data Node (dn20.3pas.admatrix.jp)
+    url: http://192.168.134.139:50075
+    timeout: 10
+    http_response_status_code: 200
+    min_collection_interval: 20
+    skip_event: true
+  - name: Hadoop Data Node (dn21.3pas.admatrix.jp)
+    url: http://192.168.134.140:50075
+    timeout: 10
+    http_response_status_code: 200
+    min_collection_interval: 20
+    skip_event: true
+  - name: Hadoop Data Node (dn22.3pas.admatrix.jp)
+    url: http://192.168.134.142:50075
+    timeout: 10
+    http_response_status_code: 200
+    min_collection_interval: 20
+    skip_event: true
+  - name: Hadoop Data Node (dn23.3pas.admatrix.jp)
+    url: http://192.168.134.143:50075
+    timeout: 10
+    http_response_status_code: 200
+    min_collection_interval: 20
+    skip_event: true
+  - name: Hadoop Data Node (dn24.3pas.admatrix.jp)
+    url: http://192.168.134.144:50075
+    timeout: 10
+    http_response_status_code: 200
+    min_collection_interval: 20
+    skip_event: true
+  - name: Hadoop Data Node (dn25.3pas.admatrix.jp)
+    url: http://192.168.134.145:50075
+    timeout: 10
+    http_response_status_code: 200
+    min_collection_interval: 20
+    skip_event: true
+  - name: Hadoop Data Node (dn26.3pas.admatrix.jp)
+    url: http://192.168.134.146:50075
+    timeout: 10
+    http_response_status_code: 200
+    min_collection_interval: 20
+    skip_event: true
+  - name: Hadoop Data Node (dn27.3pas.admatrix.jp)
+    url: http://192.168.134.150:50075
+    timeout: 10
+    http_response_status_code: 200
+    min_collection_interval: 20
+    skip_event: true
+  - name: Hadoop Data Node (dn28.3pas.admatrix.jp)
+    url: http://192.168.134.151:50075
+    timeout: 10
+    http_response_status_code: 200
+    min_collection_interval: 20
+    skip_event: true
+  - name: Hadoop Data Node (dn29.3pas.admatrix.jp)
+    url: http://192.168.134.152:50075
+    timeout: 10
+    http_response_status_code: 200
+    min_collection_interval: 20
+    skip_event: true
+  - name: Hadoop Data Node (dn30.3pas.admatrix.jp)
+    url: http://192.168.134.153:50075
+    timeout: 10
+    http_response_status_code: 200
+    min_collection_interval: 20
+    skip_event: true
+  - name: Hadoop Data Node (dn31.3pas.admatrix.jp)
+    url: http://192.168.134.154:50075
+    timeout: 10
+    http_response_status_code: 200
+    min_collection_interval: 20
+    skip_event: true
+  - name: Hadoop Data Node (dn32.3pas.admatrix.jp)
+    url: http://192.168.134.155:50075
+    timeout: 10
+    http_response_status_code: 200
+    min_collection_interval: 20
+    skip_event: true
+  - name: Hadoop Data Node (dn33.3pas.admatrix.jp)
+    url: http://192.168.134.156:50075
+    timeout: 10
+    http_response_status_code: 200
+    min_collection_interval: 20
+    skip_event: true
+  - name: Hadoop Data Node (dn34.3pas.admatrix.jp)
+    url: http://192.168.134.157:50075
+    timeout: 10
+    http_response_status_code: 200
+    min_collection_interval: 20
+    skip_event: true
+  - name: Hadoop Data Node (dn35.3pas.admatrix.jp)
+    url: http://192.168.134.158:50075
+    timeout: 10
+    http_response_status_code: 200
+    min_collection_interval: 20
+    skip_event: true
+#  - name: Hadoop Data Node (dn36.3pas.admatrix.jp)
+#    url: http://192.168.134.159???:50075
+#    timeout: 10
+#    http_response_status_code: 200
+#    min_collection_interval: 20
+#    skip_event: true
+  - name: RegionServer (hsn01.3pas.admatrix.jp)
+    url: http://hsn01.3pas.admatrix.jp:60030/rs-status
+    timeout: 20
+    http_response_status_code: 200
+    min_collection_interval: 30
+    skip_event: true
+  - name: RegionServer (hsn02.3pas.admatrix.jp)
+    url: http://hsn02.3pas.admatrix.jp:60030/rs-status
+    timeout: 20
+    http_response_status_code: 200
+    min_collection_interval: 30
+    skip_event: true
+  - name: RegionServer (hsn03.3pas.admatrix.jp)
+    url: http://hsn03.3pas.admatrix.jp:60030/rs-status
+    timeout: 20
+    http_response_status_code: 200
+    min_collection_interval: 30
+    skip_event: true
+  - name: RegionServer (hsn04.3pas.admatrix.jp)
+    url: http://hsn04.3pas.admatrix.jp:60030/rs-status
+    timeout: 20
+    http_response_status_code: 200
+    min_collection_interval: 30
+    skip_event: true
+  - name: RegionServer (hsn05.3pas.admatrix.jp)
+    url: http://hsn05.3pas.admatrix.jp:60030/rs-status
+    timeout: 20
+    http_response_status_code: 200
+    min_collection_interval: 30
+    skip_event: true
+  - name: RegionServer (hsn06.3pas.admatrix.jp)
+    url: http://hsn06.3pas.admatrix.jp:60030/rs-status
+    timeout: 20
+    http_response_status_code: 200
+    min_collection_interval: 30
+    skip_event: true
+  - name: RegionServer (hsn07.3pas.admatrix.jp)
+    url: http://hsn07.3pas.admatrix.jp:60030/rs-status
+    timeout: 20
+    http_response_status_code: 200
+    min_collection_interval: 30
+    skip_event: true
+  - name: RegionServer (hsn08.3pas.admatrix.jp)
+    url: http://hsn08.3pas.admatrix.jp:60030/rs-status
+    timeout: 20
+    http_response_status_code: 200
+    min_collection_interval: 30
+    skip_event: true
+  - name: RegionServer (hsn09.3pas.admatrix.jp)
+    url: http://hsn09.3pas.admatrix.jp:60030/rs-status
+    timeout: 20
+    http_response_status_code: 200
+    min_collection_interval: 30
+    skip_event: true
+  - name: RegionServer (hsn10.3pas.admatrix.jp)
+    url: http://hsn10.3pas.admatrix.jp:60030/rs-status
+    timeout: 20
+    http_response_status_code: 200
+    min_collection_interval: 30
+    skip_event: true
+  - name: RegionServer (hsn11.3pas.admatrix.jp)
+    url: http://hsn11.3pas.admatrix.jp:60030/rs-status
+    timeout: 20
+    http_response_status_code: 200
+    min_collection_interval: 30
+    skip_event: true
+  - name: MasterServer (hmn01.3pas.admatrix.jp)
+    url: http://192.168.134.50:60010/master-status
+    timeout: 20
+    http_response_status_code: 200
+    min_collection_interval: 30
+    skip_event: true
+
+    # The default HTTP method is GET but the (optional) method parameter allows you to change the
+    # HTTP method to POST.
+    # If using the POST method, you can then specify the data to send in the body of the request
+    # with the data parameter.
+    #
+    # method: get
+    # data:
+    #   key: value
+
+    # The (optional) content_match parameter will allow the check
+    # to look for a particular string within the response. The check
+    # will report as DOWN if the string is not found.
+    #
+    # content_match uses Python regular expressions which means that
+    # you will have to escape the following "special" characters with
+    # a backslash (\) if you're trying to match them in your content:
+    #  . ^ $ * + ? { } [ ] \ | ( )
+    #
+    # Examples:
+    # content_match: 'In Stock'
+    # content_match: '^(Bread|Apples|Very small rocks|Cider|Gravy|Cherries|Mud|Churches|Lead) float(s)? in water'
+
+    # The (optional) reverse_content_match parameter will allow the content_match
+    # to work the other way around. That means that the check will report
+    # as DOWN if the string is found.
+    # reverse_content_match: false
+
+    # If your service uses basic authentication, you can optionally
+    # specify a username and password that will be used in the check.
+    #
+    # username: user
+    # password: pass
+
+    # The (optional) http_response_status_code parameter will instruct the check
+    # to look for a particular HTTP response status code or a Regex identifying
+    # a set of possible status codes.
+    # The check will report as DOWN if status code returned differs.
+    # This defaults to 1xx, 2xx and 3xx HTTP status code: (1|2|3)\d\d.
+    # http_response_status_code: 401
+
+    # The (optional) include_content parameter will instruct the check
+    # to include the first 200 characters of the HTTP response body
+    # in notifications sent by this plugin. This is best used with
+    # "healthcheck"-type URLs, where the body contains a brief, human-
+    # readable summary of failure reasons in the case of errors. This
+    # defaults to false.
+    #
+    # include_content: false
+
+    # The (optional) collect_response_time parameter will instruct the
+    # check to create a metric 'network.http.response_time', tagged with
+    # the url, reporting the response time in seconds.
+    #
+    # collect_response_time: true
+
+    # The (optional) disable_ssl_validation will instruct the check
+    # to skip the validation of the SSL certificate of the URL being tested.
+    # This is mostly useful when checking SSL connections signed with
+    # certificates that are not themselves signed by a public authority.
+    # When true, the check logs a warning in collector.log
+    # Defaults to true, set to false if you want SSL certificate validation.
+    #
+    # disable_ssl_validation: true
+
+    # If you enable the disable_ssl_validation above, you might want to disable security warnings
+    # You can use the flag below to do so
+    # ignore_ssl_warning: false
+
+    # Path of trusted CA certificates used to validate the SSL certificate
+    # for this url.
+    # Overrides the default path and the one specified in init_config.
+    #
+    # ca_certs: /etc/ssl/certs/ca-certificates.crt
+
+    # The (optional) check_certificate_expiration will instruct the check
+    # to create a service check that checks the expiration of the
+    # ssl certificate. Allow for a warning to occur when x days are
+    # left in the certificate, and alternatively raise a critical
+    # warning if the certificate is y days from the expiration date.
+    # The SSL certificate will always be validated for this additional
+    # service check regardless of the value of disable_ssl_validation
+    #
+    # check_certificate_expiration: true
+    # days_warning: 14
+    # days_critical: 7
+
+    # The (optional) headers parameter allows you to send extra headers
+    # with the request. This is useful for explicitly specifying the host
+    # header or perhaps adding headers for authorisation purposes. Note
+    # that the http client library converts all headers to lowercase.
+    # This is legal according to RFC2616
+    # (See: http://tools.ietf.org/html/rfc2616#section-4.2)
+    # but may be problematic with some HTTP servers
+    # (See: https://code.google.com/p/httplib2/issues/detail?id=169)
+    #
+    # headers:
+    #   Host: alternative.host.example.com
+    #   X-Auth-Token: SOME-AUTH-TOKEN
+
+    # The (optional) skip_event parameter will instruct the check to not
+    # create any event to avoid duplicates with a server side service check.
+    # This default to False.
+    #
+    #skip_event: true
+
+    # The (optional) no_proxy parameter would bypass any proxy settings enabled
+    # and attempt to reach the the URL directly.
+    # If no proxy is defined at any level, this flag bears no effect.
+    # Defaults to False.
+    #
+    # no_proxy: false
+
+    # The (optional) allow_redirects parameter can enable redirection.
+    # Defaults to True.
+    #
+    # allow_redirects: true
+
+
+    # The (optional) include_default_header parameter instructs the check to include the default headers.
+    # Default headers can be found at https://github.com/DataDog/dd-agent/blob/5.10.0/util.py#L58-L67
+    #
+    # Defaults to True.
+    #
+    #include_default_headers: false
+
+    # tags:
+    #   - url:http://alternative.host.example.com
+    #   - env:production
+
+  # - name: My second service
+  #   url: https://another.url.example.com

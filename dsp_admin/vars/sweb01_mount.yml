@@ -1,0 +1,2 @@
+mount_info:
+  - { src: "192.168.100.205:/dsp/old/staging", path: /nas/dsp, opts: "rsize=8192,wsize=8192,hard,intr,noatime" }

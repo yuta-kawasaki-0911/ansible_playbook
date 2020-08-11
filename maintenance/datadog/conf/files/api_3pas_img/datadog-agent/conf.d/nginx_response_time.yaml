@@ -1,0 +1,15 @@
+init_config:
+  metric_request_time: fs.nginx.request_time.seconds
+  metric_upstream_response_time: fs.nginx.upstream_response_time.seconds
+  groups: img
+
+instances:
+  - name: creative_http
+    server_name: creative-3pas.admatrix.jp
+    logfile: creative_http.log
+    protocol: http
+
+  - name: creative_https
+    server_name: creative-3pas.admatrix.jp
+    logfile: creative_https.log
+    protocol: https

@@ -1,0 +1,6 @@
+update_optout_crt: optout-dsp.t-ad-m.asia.crt.to20210228
+update_optout_key: optout-dsp.t-ad-m.asia.key.to20210228
+update_optout_cer: optout-dsp.t-ad-m.asia.cer.to20210228
+optout_crt_path: /usr/local/apache2/conf/ssl/optout-dsp.t-ad-m.asia.crt
+optout_key_path: /usr/local/apache2/conf/ssl/optout-dsp.t-ad-m.asia.key
+optout_cer_path: /usr/local/apache2/conf/ssl/optout-dsp.t-ad-m.asia.cer

@@ -1,0 +1,75 @@
+---
+- name: create devops_cebu user
+  user:
+    name: devops_cebu
+
+- name: copy sudoers file
+  copy:
+    src: sysops
+    dest: /etc/sudoers.d/sysops
+
+- name: create directory
+  file: 
+    path: /usr/local/apache2/htdocs
+    state: directory
+    owner: root
+    group: root
+    mode: '0777'
+
+- name: copy mark.html file
+  copy:
+    src: mark.html
+    dest: /usr/local/apache2/htdocs/mark.html
+
+- name: search target files
+  find:
+    paths: /tmp
+    patterns: "bidreq4ml*"
+  register: target_files
+
+- when: target_files.stat.exists
+  name: set the directory permissions
+  file:
+    path: '{{ item.path }}'
+    owner: tomcat
+    group: tomcat
+    mode: "a+w"
+  with_items:
+    - '{{ target_files.files }}'
+
+- name: kernelの設定
+  shell: |
+    echo "ffffffff" > /sys/class/net/em2/queues/tx-0/xps_cpus
+    echo "ffffffff" > /sys/class/net/em2/queues/rx-0/rps_cpus
+    echo "ffffffff" > /sys/class/net/em2/queues/rx-1/rps_cpus
+    echo "ffffffff" > /sys/class/net/em2/queues/rx-2/rps_cpus
+    echo "ffffffff" > /sys/class/net/em2/queues/rx-3/rps_cpus
+    echo 4096 > /sys/class/net/em2/queues/rx-0/rps_flow_cnt
+    echo 4096 > /sys/class/net/em2/queues/rx-1/rps_flow_cnt
+    echo 4096 > /sys/class/net/em2/queues/rx-2/rps_flow_cnt
+    echo 4096 > /sys/class/net/em2/queues/rx-3/rps_flow_cnt
+    echo 32768 > /proc/sys/net/core/rps_sock_flow_entries 
+
+## ※dapi特有の設定（NICの名称で設定場所が変わるので、注意）
+- name: rc.localの編集
+  lineinfile:
+    dest: /etc/rc.local
+    line: '{{ item }}'
+  with_items:
+    - 'echo "ffffffff" > /sys/class/net/em2/queues/tx-0/xps_cpus'
+    - 'echo "ffffffff" > /sys/class/net/em2/queues/rx-0/rps_cpus'
+    - 'echo "ffffffff" > /sys/class/net/em2/queues/rx-1/rps_cpus'
+    - 'echo "ffffffff" > /sys/class/net/em2/queues/rx-2/rps_cpus'
+    - 'echo "ffffffff" > /sys/class/net/em2/queues/rx-3/rps_cpus'
+    - 'echo 4096 > /sys/class/net/em2/queues/rx-0/rps_flow_cnt'   
+    - 'echo 4096 > /sys/class/net/em2/queues/rx-1/rps_flow_cnt'   
+    - 'echo 4096 > /sys/class/net/em2/queues/rx-2/rps_flow_cnt'   
+    - 'echo 4096 > /sys/class/net/em2/queues/rx-3/rps_flow_cnt'   
+    - 'echo 32768 > /proc/sys/net/core/rps_sock_flow_entries'
+
+- name: SSL用ディレクトリ作成
+  shell: |
+    mkdir /usr/local/apache2/conf/bidding-dsp.ad-m.asia
+    mkdir /usr/local/apache2/conf/data-dsp.ad-m.asia
+    mkdir /usr/local/apache2/conf/optout-dsp.ad-m.asia
+

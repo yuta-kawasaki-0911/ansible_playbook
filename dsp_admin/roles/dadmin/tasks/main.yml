@@ -1,0 +1,29 @@
+---
+- name: iptablesのバックアップを作成
+  shell: iptables-save > /etc/iptables/iptables.`date +%Y%m%d`
+
+- name: iptablesの設定ファイルをコピー
+  copy:
+    src: "{{ inventory_hostname }}/iptables"
+    dest: /etc/iptables/rules.v4
+    backup: yes
+
+- name: iptablesの設定ファイルを反映
+  shell: iptables-restore < /etc/iptables/rules.v4
+
+- name: hosts.allowのコピー
+  copy:
+    src: "{{ inventory_hostname }}/hosts.allow"
+    dest: /etc/hosts.allow
+    mode: 0644
+
+- name: hosts.denyの設定
+  lineinfile:
+    path: /etc/hosts.deny
+    line: "ALL:ALL"
+
+- when: "'dadmin02' in '{{ inventory_hostname }}'"
+  name: set sudoers
+  copy:
+    src: dadmin02_sysops
+    dest: /etc/sudoers.d/

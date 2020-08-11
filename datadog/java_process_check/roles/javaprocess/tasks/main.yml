@@ -1,0 +1,43 @@
+---
+- name: Register process.d/conf.yaml stat
+  stat:
+    path: /etc/datadog-agent/conf.d/process.d/conf.yaml
+  register: process_yaml
+
+- name: Check if java.process instance is in process.d/conf.yaml
+  become: yes
+  shell: "grep '^- name: java.process' /etc/datadog-agent/conf.d/process.d/conf.yaml"
+  register: javaproc_instance
+  ignore_errors: true
+  when: process_yaml.stat.exists == True
+
+- name: Append java.process instance if process.d/conf.yaml exists
+  become: yes
+  blockinfile:
+    path: /etc/datadog-agent/conf.d/process.d/conf.yaml
+    block: |
+      - name: java.process
+        search_string: ['java']
+        exact_match: False
+    marker: "# {mark} Java Process Monitoring"
+  when: process_yaml.stat.exists == True and javaproc_instance.stdout == ''
+
+- name: Copy conf.yaml to process.d/ if it does not exist yet
+  copy:
+    src: conf.yaml
+    dest: /etc/datadog-agent/conf.d/process.d/
+  when: process_yaml.stat.exists == False
+  become: true
+
+- become: yes
+  file:
+    path: /etc/datadog-agent/conf.d/process.d/conf.yaml
+    owner: dd-agent
+    group: dd-agent
+
+- name: restart datadog-agent
+  become: true
+  service:
+    name: datadog-agent
+    state: restarted
+    enabled: yes

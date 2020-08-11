@@ -1,0 +1,15 @@
+---
+- hosts: target
+  become: yes
+  tasks:
+    - name: select the yum repository of dell
+      shell: wget -q -O - http://linux.dell.com/repo/hardware/latest/bootstrap.cgi | sudo bash
+    - name: yum install omsa tools
+      yum:
+        name: '{{ item }}'
+      with_items:
+        - srvadmin-all
+        - srvadmin-webserver
+        - srvadmin-idrac
+    - name: start omsa
+      command: /opt/dell/srvadmin/sbin/srvadmin-services.sh start 

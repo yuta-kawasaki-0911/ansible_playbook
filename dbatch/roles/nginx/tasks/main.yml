@@ -1,0 +1,38 @@
+---
+- name: nginxのインストール
+  apt:
+    name: nginx
+    update_cache: yes
+
+- name: 必要なディレクトリの作成
+  file:
+    state: directory
+    path: '{{ item.path }}'
+    mode: '{{ item.mode }}'
+  with_items:
+    - { path: /etc/nginx/conf.d, mode: '0755' }
+    - { path: /var/log/nginx, mode: '0755' }
+
+- name: 実行ユーザの作成
+  user:
+    name: nginx
+
+- name: 設定ファイルの配布
+  copy:
+    src: '{{ item.src }}'
+    dest: '{{ item.dest }}'
+    mode: '{{ item.mode }}'
+  with_items: '{{ nginx_conf }}'
+
+- name: ログローテの設定
+  copy:
+    src: '{{ item.src }}'
+    dest: '{{ item.dest }}'
+    mode: '{{ item.mode }}'
+  with_items: '{{ logrote }}'
+  when: 'dbatch' in '{{ group_names }}'
+
+- name: nginxの起動
+  service:
+    name: nginx
+    state: started

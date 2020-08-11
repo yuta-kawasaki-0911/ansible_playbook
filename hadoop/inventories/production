@@ -1,0 +1,13 @@
+[nn_active]
+nn01
+
+[nn_standby]
+nn02
+
+[nn_jobhistory]
+nn03
+
+[dn]
+dn[01:35]
+
+[target]

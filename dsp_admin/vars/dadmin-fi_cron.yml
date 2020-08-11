@@ -1,0 +1,2 @@
+cron:
+  - { src: docker_logrotate , dest: /etc/logrotate.d/, mode: "0644" } 
