@@ -1,0 +1,4 @@
+user: tomcat
+public_keys:
+  - '{{ tomcat_batch01 }}'
+

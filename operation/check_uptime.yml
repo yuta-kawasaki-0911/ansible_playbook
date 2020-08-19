@@ -1,0 +1,17 @@
+---
+- hosts: target
+  become: yes
+  tasks:
+    - name: check uptime
+      shell: uptime
+      register: uptime_result
+
+    - name: check startup time
+      shell: date --date=@$(expr `date +%s` - `cut -d "." -f 1 /proc/uptime`)
+      register: startup_time_result
+
+    - name: uptime out
+      debug: var=uptime_result.stdout_lines
+
+    - name: startup time out
+      debug: var=startup_time_result.stdout_lines

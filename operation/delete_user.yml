@@ -1,0 +1,12 @@
+---
+- hosts: all
+  become: yes
+  gather_facts: no
+  vars: #要修正
+    user_name: Ree_Redido 
+  tasks:
+    - name: delete user
+      user: 
+        name: '{{user_name}}'
+        state: absent
+        remove: yes

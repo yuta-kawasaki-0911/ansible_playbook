@@ -1,0 +1,32 @@
+---
+- hosts: localhost
+  vars:
+    target_domain: fullspeed.co.jp
+    key_pass: haeCaedo0u
+  tasks:
+    - name: 現在の日付を取得
+      command: date +"%Y%m%d"
+      register: date
+
+    - name: install openssl
+      pip:
+        name: '{{ item }}'
+      with_items:
+        - pyOpenSSL
+
+    - name: Generate an OpenSSL private key with the default values
+      openssl_privatekey:
+        path: /home/ansible/operation/generate_csr/created_files/{{ target_domain }}_{{ date.stdout }}.pem
+        size: 2048
+        cipher: des
+        passphrase: '{{ key_pass }}'
+
+    - name: Generate a csr
+      openssl_csr:
+        path: /home/ansible/operation/generate_csr/created_files/{{ target_domain }}_{{ date.stdout }}.csr
+        privatekey_path: /home/ansible/operation/generate_csr/created_files/{{ target_domain }}_{{ date.stdout }}.pem
+        country_name: JP
+        state_or_province_name: Tokyo
+        locality_name: "Shibuya-ku"
+        organization_name: fullspeed
+        common_name: "fullspeed.co.jp"

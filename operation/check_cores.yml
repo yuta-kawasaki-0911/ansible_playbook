@@ -1,0 +1,9 @@
+---
+- hosts: target
+  become: yes
+  tasks:
+    - name: cpuチェック
+      shell: lsblk
+      register: cpu
+    - name: debug
+      debug: var=cpu.stdout_lines

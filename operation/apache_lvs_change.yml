@@ -1,0 +1,12 @@
+---
+- hosts: target
+  tasks:
+    - name: lvsから外す
+      command: mv /usr/local/apache2/htdocs/health.html /usr/local/apache2/htdocs/health.html_bk
+      tags: remove
+
+- hosts: target
+  tasks:
+    - name: lvsに戻す
+      command: mv /usr/local/apache2/htdocs/health.html_bk /usr/local/apache2/htdocs/health.html
+      tags: add

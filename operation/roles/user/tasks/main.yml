@@ -1,0 +1,9 @@
+---
+- name: Add Linux users
+  user:
+    name: "{{ item.name }}"
+    password: "{{ item.pass|password_hash('sha512') }}"
+    state: present
+    shell: /bin/bash
+  with_items: "{{ users_info }}"
+
