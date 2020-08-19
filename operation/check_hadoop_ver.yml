@@ -1,0 +1,10 @@
+---
+- hosts: target
+  become: yes
+  tasks:
+    - name: check hadoop version
+      shell: hadoop version
+      register: hadoop_ver_result
+
+    - name: hadoop version out
+      debug: var=hadoop_ver_result.stdout_lines

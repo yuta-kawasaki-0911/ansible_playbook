@@ -1,0 +1,12 @@
+- hosts: batch
+  become: yes
+  tasks:
+    - name: set users in groups
+      user:
+        name: '{{ item.name }}'
+        groups: '{{ item.group }}'
+        state: present
+      with_items:
+        - { name: zita.enriquez, group: devops_cebu }
+        - { name: ree.redido, group: devops_cebu, sysops }
+      when: inventory_hostname == 'batch01'

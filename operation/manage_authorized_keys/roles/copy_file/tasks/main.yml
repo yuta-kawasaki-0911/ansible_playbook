@@ -1,0 +1,9 @@
+---
+- name: 対象のauthファイルに公開鍵を追加
+  copy:
+    src: '{{ authorized_keys_file }}' 
+    dest: /home/{{ user }}/.ssh/authorized_keys
+    owner: '{{ user }}'
+    group: '{{ user }}'
+    mode: 0600
+    backup: yes

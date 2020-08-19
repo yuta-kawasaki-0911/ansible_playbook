@@ -1,0 +1,17 @@
+---
+- hosts: target
+  become: yes
+  tasks:
+    - name: check machine version
+      shell: dmidecode | grep "Product Name"
+      register: machine_ver_result
+
+    - name: check disk spec
+      shell: df -h
+      register: disk_spec_result
+
+    - name: machine version out
+      debug: var=machine_ver_result.stdout_lines
+
+    - name: disk speck out
+      debug: var=disk_spec_result.stdout_lines

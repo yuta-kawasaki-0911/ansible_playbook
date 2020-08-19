@@ -1,0 +1,6 @@
+---
+- hosts: target
+  become: yes
+  tasks:
+    - name: keepalived reload
+      command: /etc/init.d/keepalived reload 

@@ -1,0 +1,31 @@
+---
+- hosts: target
+  become: yes
+  tasks:
+    - name: check memory all
+      command: cat /proc/meminfo
+      register: memory_all_result
+
+    - name: check memory spec
+      shell: dmidecode -t memory
+      register: memory_spec_result
+
+    - name: check memory count
+      shell: dmidecode -t memory | grep 'Memory Device' | wc -l
+      register: memory_count_result
+
+    - name: check memory size
+      shell: dmidecode -t memory | grep 'Size'
+      register: memory_size_result
+
+    - name: memory all out
+      debug: var=memory_all_result.stdout_lines
+
+    - name: memory spec out
+      debug: var=memory_spec_result.stdout_lines
+
+    - name: memory count out
+      debug: var=memory_count_result.stdout_lines
+
+    - name: memory size out
+      debug: var=memory_size_result.stdout_lines
