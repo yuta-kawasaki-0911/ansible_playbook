@@ -1,0 +1,2 @@
+# ansible_playbook
+業務で作成する予定のAnsible Playbookを一般化して検証するリポジトリ。
